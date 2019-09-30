@@ -1,0 +1,251 @@
+button {
+  background: #85C633 !important;
+  color: white !important;
+}
+.main-user-cabinet {
+  background: url("../../public/images/user_cabinet_back.jpg") no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.main-user-cabinet .container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 320px;
+}
+@media (max-width: 425px), (max-device-width: 425px) {
+  .main-user-cabinet .container {
+    width: 90%;
+  }
+}
+.main-user-cabinet .icon {
+  height: 300px;
+  overflow: hidden;
+  border: 2px solid #85C633;
+}
+.main-user-cabinet .icon:hover::before {
+  transform: scale(1.2);
+}
+.main-user-cabinet .icon::before {
+  background: url("../../public/images/my_photo.jpg") center center;
+  background-size: cover;
+  transition: all 500ms;
+  height: 100%;
+  display: block;
+  content: "";
+  cursor: pointer;
+}
+.main-user-cabinet section.content {
+  margin-top: 20px;
+}
+.main-user-cabinet section.content .user-info {
+  min-height: 100px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
+  padding-bottom: 10px;
+  overflow: hidden;
+  background: white;
+}
+.main-user-cabinet section.content .user-info::after {
+  content: "";
+  clear: right;
+  display: block;
+}
+.main-user-cabinet section.content .user-info h3 {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+  color: #85C633;
+  font-weight: bold;
+}
+.main-user-cabinet section.content .user-info ul {
+  font-size: 18px;
+}
+.main-user-cabinet section.content .user-info ul li {
+  padding: 10px 0;
+}
+.main-user-cabinet section.content .user-info ul li span:first-of-type {
+  font-weight: bold;
+  font-style: italic;
+}
+.main-user-cabinet section.content .user-info button {
+  margin-left: 15px;
+}
+.main-user-cabinet section.content .messages {
+  margin-top: 30px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  overflow: hidden;
+}
+.main-user-cabinet section.content .messages:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+.main-user-cabinet section.content .messages .messages-container {
+  max-height: 500px;
+  overflow: auto;
+}
+@media (max-width: 425px), (max-device-width: 425px) {
+  .main-user-cabinet section.content .messages .messages-container {
+    max-height: none;
+  }
+}
+.main-user-cabinet section.content .messages h2 {
+  background-color: #85C633;
+  text-align: center;
+  color: white;
+  margin: 0;
+  padding: 7px 10px;
+}
+.main-user-cabinet section.content .messages .one-conversation {
+  min-height: 100px;
+  padding: 10px 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  font-size: 17px;
+  border-bottom: 2px solid white;
+}
+.main-user-cabinet section.content .messages .one-conversation::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+.main-user-cabinet section.content .messages .one-conversation h3.provider-name {
+  color: white;
+  font-weight: bold;
+  padding-left: 20px;
+  margin: 0;
+  margin-bottom: 5px;
+}
+.main-user-cabinet section.content .messages .one-conversation .icon-provider {
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  background: url("../../public/images/WC.jpg") no-repeat center center;
+  background-size: cover;
+  margin-right: 10px;
+  float: left;
+  margin-bottom: 10px;
+}
+.main-user-cabinet section.content .messages .one-conversation .answer-field {
+  margin-top: 10px;
+  background-color: white;
+  padding: 10px;
+  clear: both;
+}
+.main-user-cabinet section.content .messages .one-conversation .answer-field > div {
+  box-sizing: border-box;
+}
+.main-user-cabinet section.content .messages .one-conversation .answer-field::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+.main-user-cabinet section.content .messages .one-conversation .answer-field button {
+  float: right;
+  margin-right: 9px;
+}
+@media (max-device-width: 425px), (max-width: 425px) {
+  .main-user-cabinet section.content .messages .one-conversation .answer-field button {
+    width: 100%;
+  }
+}
+.main-user-cabinet section.content .messages .one-conversation .conversation-messages {
+  flex-grow: 1;
+  color: white;
+  text-overflow-ellipsis: ellipsis;
+  overflow: hidden;
+}
+.main-user-cabinet section.content .messages .one-conversation .conversation-messages > p {
+  margin: 0;
+  margin-bottom: 10px;
+}
+.main-user-cabinet section.content .messages .one-conversation .conversation-messages > p span.sender-name {
+  color: #85C633;
+  font-style: italic;
+}
+.main-user-cabinet section.content .user-hobbies {
+  min-height: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+}
+@media (max-width: 950px), (max-device-width: 950px) {
+  .main-user-cabinet section.content .user-hobbies {
+    max-width: 320px;
+    width: 90%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+}
+@media (max-width: 425px), (max-device-width: 425px) {
+  .main-user-cabinet section.content .user-hobbies {
+    margin-top: 20px;
+  }
+}
+.main-user-cabinet section.content .user-hobbies h2 {
+  order: -2;
+  flex-basis: 100%;
+  text-align: center;
+  background: #85C633;
+  color: white;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.main-user-cabinet section.content .user-hobbies .hobby {
+  width: 300px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
+  margin-bottom: 25px;
+  margin-right: 20px;
+  background: white;
+}
+.main-user-cabinet section.content .user-hobbies .hobby .icon::before {
+  background: url("../../public/images/stretching.jpg") center center;
+}
+@media (max-width: 950px), (max-device-width: 950px) {
+  .main-user-cabinet section.content .user-hobbies .hobby {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+.main-user-cabinet section.content .user-hobbies .hobby::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.main-user-cabinet section.content .user-hobbies .hobby h3 {
+  text-align: center;
+  margin-top: 10px;
+  color: #85C633;
+}
+.main-user-cabinet section.content .user-hobbies .hobby .users-rate {
+  text-align: right;
+  font-size: 14px;
+  padding-right: 15px;
+}
+.main-user-cabinet section.content .user-hobbies .hobby .users-rate span:first-of-type {
+  color: blue;
+}
+.main-user-cabinet section.content .user-hobbies .hobby .users-rate span:last-of-type {
+  color: gold;
+}
+.main-user-cabinet section.content .user-hobbies .hobby ul li span:first-of-type {
+  text-decoration: underline;
+  color: black;
+}
+.main-user-cabinet section.content .user-hobbies .hobby .icon {
+  height: 200px;
+}
+.main-user-cabinet footer {
+  height: 200px;
+}
+/*# sourceMappingURL=user_cabinet_styles.css.map */

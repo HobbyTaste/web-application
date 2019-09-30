@@ -1,0 +1,114 @@
+.hobby-info-container .buttons {
+  display: flex;
+  justify-content: space-around;
+  /*padding: 0 5px;*/
+}
+.hobby-info-container .buttons button {
+  margin: 0;
+}
+.hobby-info .title {
+  background: #85C633;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  padding: 5px 15px;
+}
+.hobby-info .title h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+.hobby-info .content {
+  padding-top: 20px;
+}
+.hobby-info .content h4 {
+  font-size: 18px;
+}
+.hobby-info .content #star-reviews {
+  max-width: 50%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.hobby-info .content #star-reviews label {
+  cursor: pointer;
+}
+.hobby-info .content #star-reviews label .star-rate {
+  width: 50px;
+  height: 50px;
+}
+.hobby-info .content #star-reviews label:hover,
+.hobby-info .content #star-reviews label:hover ~ label,
+.hobby-info .content #star-reviews label.gold ~ label {
+  color: gold;
+}
+.hobby-info .content #star-reviews label.gold {
+  color: gold;
+}
+.hobby-info .content #star-reviews input {
+  display: none;
+}
+.hobby-info .content .warning-message {
+  clear: both;
+  color: red;
+  font-weight: bold;
+}
+.hobby-info .content .send-button {
+  margin-top: 10px;
+}
+.hobby-info .content button {
+  background: #85C633;
+  color: white;
+  float: right;
+  margin-bottom: 10px;
+  margin-left: 15px;
+}
+.hobby-info .content button:hover {
+  background: #4f751e;
+}
+.hobby-info .content .feedback {
+  border-top: 1px solid black;
+  clear: both;
+}
+.hobby-info .content .feedback .feedback-field {
+  margin-top: 15px;
+}
+.hobby-info .content .feedback h4 {
+  margin-top: 10px;
+  font-style: italic;
+}
+.hobby-info .content .feedback .one-message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 100px;
+  padding: 0 10px;
+  margin-bottom: 5px;
+  justify-content: flex-start;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  border-radius: 15px;
+}
+.hobby-info .content .feedback .one-message:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+.hobby-info .content .feedback .one-message .icon-user {
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  flex-shrink: 0;
+  background: url("../../public/images/mops.jpg") no-repeat center center;
+  background-size: cover;
+  margin-right: 10px;
+}
+.hobby-info .content .feedback .one-message .message-text {
+  flex-grow: 1;
+  color: white;
+  text-overflow-ellipsis: ellipsis;
+  overflow: hidden;
+}
+.hobby-info .content .feedback .one-message .message-text h3 {
+  color: #85C633;
+  margin-bottom: 5px;
+}
+/*# sourceMappingURL=hobby_info_styles.css.map */

@@ -1,0 +1,86 @@
+@box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
+@color-green-theme: #85C633;
+@footer-height: 100px;
+
+//break-points
+@break-point1: 1250px;
+@break-point2: 950px;
+@break-point3: 768px;
+@break-point4: 520px;
+@break-point5: 425px;
+@break-point6: 375px;
+@break-point7: 320px;
+
+.icon {
+  height: 300px;
+  overflow: hidden;
+  border: 2px solid @color-green-theme;
+
+  &:hover::before {
+    transform: scale(1.2);
+  }
+
+  &::before {
+    background: url("../../public/images/mops.jpg") center center;
+    background-size: cover;
+    transition: all 500ms;
+    height: 100%;
+    display: block;
+    content: "";
+    cursor: pointer;
+  }
+}
+
+.hobby {
+  width: 300px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  box-shadow: @box-shadow;
+  margin-bottom: 25px;
+  margin-right: 20px;
+  background: white;
+
+  @media (max-width: @break-point2), (max-device-width: @break-point2) {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+
+  h3 {
+    text-align: center;
+    margin-top: 10px;
+    color: @color-green-theme;
+  }
+
+  .users-rate {
+    text-align: right;
+    font-size: 14px;
+    padding-right: 15px;
+
+    span:first-of-type {
+      color: blue;
+    }
+
+    span:last-of-type {
+      color: gold;
+    }
+  }
+
+  ul {
+    li {
+      span:first-of-type {
+        text-decoration: underline;
+        color: black;
+      }
+    }
+  }
+
+  .icon {
+    height: 200px;
+  }
+}

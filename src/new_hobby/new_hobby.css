@@ -1,0 +1,89 @@
+@font-face {
+  font-family: 'Rancho';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Rancho Regular'), local('Rancho-Regular'), url(https://fonts.gstatic.com/s/rancho/v9/46kulbzmXjLaqZRVam_k.ttf) format('truetype');
+}
+button {
+  background-color: #85C633 !important;
+  color: white !important;
+  min-height: 40px !important;
+}
+.main-new-hobby {
+  background: white;
+  min-height: 100vh;
+}
+.main-new-hobby header {
+  background: #85C633;
+  color: white;
+  margin-bottom: 20px;
+}
+.main-new-hobby header h1 {
+  font-family: "Rancho", cursive;
+  margin: 0;
+  padding: 0;
+  font-size: 40px;
+  line-height: 60px;
+  vertical-align: middle;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 5px black;
+}
+.main-new-hobby section.content .new-hobby-form h2 {
+  text-align: center;
+  font-weight: bold;
+}
+.main-new-hobby section.content .new-hobby-form form {
+  max-width: 500px;
+  margin: 20px auto;
+}
+.main-new-hobby section.content .new-hobby-form form .input-field {
+  margin-bottom: 20px;
+}
+.main-new-hobby section.content .new-hobby-form form button:first-of-type {
+  float: left;
+}
+.main-new-hobby section.content .new-hobby-form form button:last-of-type {
+  float: right;
+}
+@media (max-width: 950px), (max-device-width: 950px) {
+  .main-new-hobby section.content .new-hobby-form form {
+    max-width: 80%;
+  }
+}
+@media (max-width: 425px), (max-device-width: 425px) {
+  .main-new-hobby section.content .new-hobby-form form {
+    max-width: 90%;
+  }
+  .main-new-hobby section.content .new-hobby-form form button {
+    width: 100%;
+    margin-bottom: 20px;
+    height: 50px;
+  }
+}
+.main-new-hobby section.content .preview .container {
+  max-width: 500px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+@media (max-width: 950px), (max-device-width: 950px) {
+  .main-new-hobby section.content .preview .container {
+    max-width: 90%;
+    margin: 10px auto;
+  }
+}
+.main-new-hobby section.content .preview .container h2 {
+  text-align: center;
+  background: #85C633;
+  color: white;
+  font-weight: bold;
+}
+.main-new-hobby section.content .preview .container .full-info {
+  border: 1px solid black;
+  padding: 5px 10px;
+}
+.main-new-hobby section.content .preview .container .full-info h4 {
+  font-weight: bold;
+  font-size: 18px;
+}
+/*# sourceMappingURL=new_hobby.css.map */

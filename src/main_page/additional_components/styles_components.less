@@ -1,0 +1,44 @@
+._select-text-field {
+  position: relative;
+
+  ul {
+    visibility: hidden;
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    position: absolute;
+    list-style: none;
+    z-index: 100;
+    border: 1px solid black;
+    background: white;
+    max-height: 200px;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-top: -1px;
+    border-top: none;
+
+    &:hover {
+      overflow: auto;
+    }
+
+    li {
+      padding: 15px 10px;
+      cursor: pointer;
+      font-size: 18px;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.2);
+        color: white;
+      }
+    }
+
+    &._active {
+      visibility: visible;
+    }
+  }
+}
+
+div[role="tooltip"] > div {
+  font-size: 16px;
+}

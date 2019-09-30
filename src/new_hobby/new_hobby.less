@@ -1,0 +1,113 @@
+@color-green-theme: #85C633;
+
+//variables
+@box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
+@color-green-theme: #85C633;
+@footer-height: 150px;
+
+//break-points
+@break-point1: 1250px;
+@break-point2: 950px;
+@break-point3: 768px;
+@break-point4: 520px;
+@break-point5: 425px;
+@break-point6: 375px;
+@break-point7: 320px;
+
+@import url('https://fonts.googleapis.com/css?family=Rancho');
+
+button {
+  background-color: @color-green-theme !important;
+  color: white !important;
+  min-height: 40px !important;
+}
+
+.main-new-hobby {
+  background: white;
+  min-height: 100vh;
+  header {
+    background: @color-green-theme;
+    color: white;
+    margin-bottom: 20px;
+    h1 {
+      font-family: "Rancho", cursive;
+      margin: 0;
+      padding: 0;
+      font-size: 40px;
+      line-height: 60px;
+      vertical-align: middle;
+      text-align: center;
+      color: white;
+      text-shadow: 2px 2px 5px black;
+    }
+  }
+
+  section.content {
+    .new-hobby-form {
+      h2 {
+        text-align: center;
+        font-weight: bold;
+      }
+
+      form {
+        max-width: 500px;
+        margin: 20px auto;
+
+        .input-field {
+          margin-bottom: 20px;
+        }
+
+        button:first-of-type {
+          float: left;
+        }
+
+        button:last-of-type {
+          float: right;
+        }
+
+        @media (max-width: @break-point2), (max-device-width: @break-point2) {
+          max-width: 80%;
+        }
+
+        @media (max-width: @break-point5), (max-device-width: @break-point5) {
+          button {
+            width: 100%;
+            margin-bottom: 20px;
+            height: 50px;
+          }
+          max-width: 90%;
+        }
+      }
+    }
+
+    .preview {
+      .container {
+        max-width: 500px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+        @media (max-width: @break-point2), (max-device-width: @break-point2) {
+          max-width: 90%;
+          margin: 10px auto;
+        }
+
+        h2 {
+          text-align: center;
+          background: @color-green-theme;
+          color: white;
+          font-weight: bold;
+        }
+
+        .full-info {
+          border: 1px solid black;
+          padding: 5px 10px;
+
+          h4 {
+            font-weight: bold;
+            font-size: 18px;
+          }
+        }
+      }
+    }
+
+  }
+}
