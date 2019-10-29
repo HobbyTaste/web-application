@@ -106,7 +106,7 @@ class ProviderCabinet extends React.Component {
         return (
             <div className={"main-provider-cabinet"}>
                 <header>
-                    <Button variant={"contained"} color={"primary"} href={"/provider_log_out"}>Выйти</Button>
+                    <Button variant={"contained"} color={"primary"} href={"/"}>Выйти</Button>
                     <h1>Hobby Taste</h1>
                 </header>
                 <section className={"content"}>

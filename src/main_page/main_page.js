@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Link} from 'react-router-dom'
 import './index.css';
 import 'antd/dist/antd.css';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -159,6 +160,7 @@ class HomePage extends React.Component {
     }
 
     render() {
+        console.log('RENDER');
         return (
             <div className="main">
                 {
@@ -181,6 +183,9 @@ class HomePage extends React.Component {
                                 <div>
                                     <button className={"reg-button"} onClick={this.OpenRegDialog}>РЕГИСТРАЦИЯ</button>
                                     <button className={"entry-button"} onClick={this.OpenSignInSection}>ВОЙТИ</button>
+                                    <Link to='/user'>В личный кабинет</Link>
+                                    <Link to='/provider'>В кабинет партнера</Link>
+                                    <Link to='/newHobby'>Новое хобби</Link>
                                     <FormReg open={this.state.in_reg_section} CloseRegDialog={this.CloseRegDialog}/>
                                     <FormSignIn CloseSignInDialog={this.CloseSignInDialog} open={this.state.in_signIn_section} SignIn={this.onUserEnter}/>
                                 </div>

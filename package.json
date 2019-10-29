@@ -5,22 +5,31 @@
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/express": "^4.17.1",
+    "@types/log4js": "^2.3.5",
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
+    "express-error-handler": "^1.1.0",
     "form-jsonizer": "^1.0.0",
+    "lodash": "^4.17.15",
+    "morgan": "^1.9.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.8.3",
     "react-router-dom": "^5.1.1",
     "react-scripts": "2.1.5",
-    "react-text-mask": "^5.4.3"
+    "react-text-mask": "^5.4.3",
+    "typescript": "^3.6.4"
   },
   "scripts": {
     "start": "node server/app.js",
     "build": "webpack --mode production",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "webpack-dev-server --mode development --open"
+    "dev": "webpack --watch --mode development",
+    "tsc": "tsc",
+    "dev:server": "NODE_ENV=development ts-node-dev --respawn --transpileOnly ./server/app.ts",
+    "prod:server": "NODE_ENV=production tsc && node ./build/app.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,6 +48,9 @@
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
+    "@types/lodash": "^4.14.144",
+    "@types/mongoose": "^5.5.23",
+    "@types/morgan": "^1.7.37",
     "antd": "^3.13.6",
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.0.5",
@@ -48,9 +60,12 @@
     "css-loader": "^2.1.0",
     "extract-css-chunks-webpack-plugin": "^4.3.1",
     "file-loader": "^3.0.1",
+    "log4js": "^5.3.0",
     "mini-css-extract-plugin": "^0.6.0",
+    "mongoose": "^5.7.6",
     "react-hot-loader": "^4.7.2",
     "react-toolbox": "^2.0.0-beta.13",
+    "ts-node-dev": "^1.0.0-pre.43",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"

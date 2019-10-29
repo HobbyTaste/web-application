@@ -1,6 +1,7 @@
 import React from 'react'
 import Grid from "@material-ui/core/es/Grid";
 import  './user_cabinet_styles.css'
+import {Link} from 'react-router-dom';
 import Button from "@material-ui/core/es/Button";
 import HobbyInfo from "../provider_cabinet/hobby_info";
 import TextField from "@material-ui/core/es/TextField/TextField";
@@ -120,7 +121,8 @@ class UserCabinet extends React.Component {
                         <Grid item xs={6} sm={4} className={"logo"} onClick={this.onLogoClick}><h1>Hobby Taste</h1></Grid>
                         <Grid item xs={6} sm={8} className={"user"}>
                             <div>
-                                <Button href={"/sign_out"} className={"exit-button"}>Выйти</Button>
+                                <Button href={"/"} className={"exit-button"}>Выйти</Button>
+                                <Link to='/'>На главную</Link>
                             </div>
                         </Grid>
                     </Grid>
@@ -196,4 +198,4 @@ class UserCabinet extends React.Component {
     }
 }
 
-ReactDOM.render(<UserCabinet/>, document.getElementById('root'));
+export default UserCabinet;

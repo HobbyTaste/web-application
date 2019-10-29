@@ -209,4 +209,4 @@ class NewHobby extends  React.Component {
     }
 }
 
-ReactDOM.render(<NewHobby/>, document.getElementById('root'));
+export default NewHobby;

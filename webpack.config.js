@@ -45,11 +45,11 @@ module.exports = {
     devServer: {
         overlay: true,
         hot: true,
-        port: 9001,
+       /* port: 9001,
         proxy: {
-            '!(/static/dist/**/**.*)': {
+            '!(/static/dist/!**!/!**.*)': {
                 target: 'http://127.0.0.1:5000',
             },
-        }
+        }*/
     }
 };
