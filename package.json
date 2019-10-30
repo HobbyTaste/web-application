@@ -27,13 +27,15 @@
     "start:watch": "NODE_ENV=development ts-node-dev --respawn --transpileOnly ./server/app.ts",
     "build:front": "webpack --mode production",
     "build:fron:watch": "webpack --watch --mode development",
-    "build:server": "tsc"
+    "build:server": "tsc",
+    "build": "webpack --mode production && tsc"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "engines": {
-    "node": "10.16.3"
+    "node": "10.16.3",
+    "yarn": "1.x"
   },
   "browserslist": [
     ">0.2%",
