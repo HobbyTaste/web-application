@@ -21,12 +21,11 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
-    "start": "node build/app.js",
-    "build": "webpack --mode production",
-    "dev": "webpack --watch --mode development",
-    "tsc": "tsc",
-    "dev:server": "NODE_ENV=development ts-node-dev --respawn --transpileOnly ./server/app.ts",
-    "prod:server": "NODE_ENV=production tsc && node ./build/app.js"
+    "start": "NODE_ENV=development node build/app.js",
+    "start:watch": "NODE_ENV=development ts-node-dev --respawn --transpileOnly ./server/app.ts",
+    "build:front": "webpack --mode production",
+    "build:fron:watch": "webpack --watch --mode development",
+    "build:server": "tsc"
   },
   "eslintConfig": {
     "extends": "react-app"
