@@ -1,1 +1,1 @@
-web: yarn start build/app.js
+web: yarn build:front && yarn build:server && yarn start
