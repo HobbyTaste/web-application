@@ -1,6 +1,6 @@
-import * as express from 'express';
+import express from 'express';
 
-const router = express.Router();
+const indexRouter = express.Router();
 
 const TITLE: string = 'Hobby taste';
 
@@ -31,7 +31,7 @@ function getBody(): string {
     );
 }
 
-router.get('/', (req, res) => {
+indexRouter.get('/', (req, res) => {
     res.end(
         `
             <!DOCTYPE html>
@@ -43,5 +43,5 @@ router.get('/', (req, res) => {
     );
 });
 
-module.exports = router;
+export default indexRouter;
 

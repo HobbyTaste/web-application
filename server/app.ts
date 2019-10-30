@@ -4,9 +4,9 @@ import cookieParser from 'cookie-parser'
 import mongoose from 'mongoose';
 
 import logger from './utils/logger';
-const config = require('./config.json');
+import config from './config.json';
 
-const indexRoute = require('./routes/index');
+import indexRoute from './routes/index';
 import hobbyRouter from './routes/hobby';
 
 const app = express();
