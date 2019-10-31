@@ -1,9 +1,11 @@
-import express from 'express';
+import {Router, Request, Response} from 'express';
 import {isNil} from 'lodash';
+import {getTemplate} from '../utils/render';
+
 import Hobby from '../models/hobby';
 import logger from "../utils/logger";
 
-const hobbyRouter = express.Router();
+const hobbyRouter: Router = Router();
 
 interface ReqBodyAddI {
   label: string;
@@ -20,7 +22,15 @@ interface ReqQueryFindI {
   contains: string;
 }
 
-hobbyRouter.post('/add', (req, res) => {
+hobbyRouter.get('/', (req: Request, res: Response) => {
+  res.redirect('new');
+});
+
+hobbyRouter.get('/new', (req: Request, res: Response) => {
+  res.end(getTemplate());
+});
+
+hobbyRouter.post('/add', (req: Request, res: Response) => {
   const {label, phoneNumber, address, metroStation, description, shortDescription}: ReqBodyAddI = req.body;
   const hobby = new Hobby({
     label,
@@ -37,7 +47,7 @@ hobbyRouter.post('/add', (req, res) => {
   res.end();
 });
 
-hobbyRouter.get('/find', (req, res) => {
+hobbyRouter.get('/find', (req: Request, res: Response) => {
     const {startsWith, label, contains}: ReqQueryFindI = req.query;
     let query;
     if (!isNil(label)) {

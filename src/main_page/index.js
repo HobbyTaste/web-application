@@ -13,13 +13,13 @@ class Page extends React.Component {
                 <Route exact path='/'>
                     <HomePage/>
                 </Route>
-                <Route exact path='/user'>
+                <Route exact path='/user/cabinet'>
                     <UserCabinet/>
                 </Route>
-                <Router exact path='/provider'>
+                <Router exact path='/provider/cabinet'>
                     <ProviderCabinet/>
                 </Router>
-                <Router exact path='/newHobby'>
+                <Router exact path='/hobby/new'>
                     <NewHobby/>
                 </Router>
             </Router>

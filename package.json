@@ -7,11 +7,13 @@
     "@material-ui/icons": "^3.0.2",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
-    "mongoose": "^5.7.7",
-    "log4js": "^5.3.0",
     "express-error-handler": "^1.1.0",
+    "express-slash": "^2.0.1",
+    "express-trailing-slash": "^1.0.0",
     "form-jsonizer": "^1.0.0",
     "lodash": "^4.17.15",
+    "log4js": "^5.3.0",
+    "mongoose": "^5.7.7",
     "morgan": "^1.9.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
@@ -23,10 +25,10 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
-    "start": "NODE_ENV=development node build/app.js",
+    "start": "NODE_ENV=production node build/app.js",
     "start:watch": "NODE_ENV=development ts-node-dev --respawn --transpileOnly ./server/app.ts",
     "build:front": "webpack --mode production",
-    "build:fron:watch": "webpack --watch --mode development",
+    "build:front:watch": "webpack --watch --mode development",
     "build:server": "tsc",
     "build": "webpack --mode production && tsc"
   },

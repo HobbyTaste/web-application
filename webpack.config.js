@@ -31,7 +31,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist/'),
         filename: 'main.js',
-        publicPath: "dist/"
+        publicPath: "/dist/"
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
@@ -42,14 +42,4 @@ module.exports = {
             chunkFilename: '0.css',
         }),
     ],
-    devServer: {
-        overlay: true,
-        hot: true,
-       /* port: 9001,
-        proxy: {
-            '!(/static/dist/!**!/!**.*)': {
-                target: 'http://127.0.0.1:5000',
-            },
-        }*/
-    }
 };

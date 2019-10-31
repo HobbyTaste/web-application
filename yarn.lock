@@ -4808,6 +4808,20 @@ express-error-handler@^1.1.0:
   dependencies:
     mout "0.12.0"
 
+express-slash@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/express-slash/-/express-slash-2.0.1.tgz#76eb869fed8f71ae4f98785cbe00bf1bb454d627"
+  integrity sha1-duuGn+2Pca5PmHhcvgC/G7RU1ic=
+
+express-trailing-slash@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/express-trailing-slash/-/express-trailing-slash-1.0.0.tgz#286476b2d3c285874e79be5a78b3f9d11ec2ef3e"
+  integrity sha512-Ge6i1M3YkhTdvhZ6hp0+w+/xu0kZDuAEjhSlxoILB7vw42JGSiMtOZgFCMBP7yknCQn0kxSEr67fQYXdo8aCZA==
+  dependencies:
+    lodash.isarray "4.0.0"
+    lodash.isobject "3.0.2"
+    lodash.some "4.6.0"
+
 express@^4.16.2, express@^4.17.1:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
@@ -7356,10 +7370,20 @@ lodash.isarguments@^3.0.0:
   resolved "https://registry.yarnpkg.com/lodash.isarguments/-/lodash.isarguments-3.1.0.tgz#2f573d85c6a24289ff00663b491c1d338ff3458a"
   integrity sha1-L1c9hcaiQon/AGY7SRwdM4/zRYo=
 
+lodash.isarray@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-4.0.0.tgz#2aca496b28c4ca6d726715313590c02e6ea34403"
+  integrity sha1-KspJayjEym1yZxUxNZDALm6jRAM=
+
 lodash.isarray@^3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
   integrity sha1-eeTriMNqgSKvhvhEqpvNhRtfu1U=
+
+lodash.isobject@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
+  integrity sha1-PI+41bW/S/kK4G4U8qUwpO2TXh0=
 
 lodash.isplainobject@^4.0.6:
   version "4.0.6"
@@ -7380,7 +7404,7 @@ lodash.memoize@^4.1.2:
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
 
-lodash.some@^4.6.0:
+lodash.some@4.6.0, lodash.some@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.some/-/lodash.some-4.6.0.tgz#1bb9f314ef6b8baded13b549169b2a945eb68e4d"
   integrity sha1-G7nzFO9ri63tE7VJFpsqlF62jk0=

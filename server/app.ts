@@ -4,12 +4,15 @@ import cookieParser from 'cookie-parser'
 import mongoose from 'mongoose';
 
 import logger from './utils/logger';
+import {trailingSlashMiddleware} from './utils/trailingSlashes';
 import config from './config.json';
 
 import indexRoute from './routes/index';
 import hobbyRouter from './routes/hobby';
+import providerRouter from './routes/provider';
+import userRouter from "./routes/user";
 
-const app = express();
+const app: express.Application = express();
 
 const LISTENING_PORT = process.env.PORT || Number(config.port) || 3000;
 const environment = process.env.NODE_ENV;
@@ -18,7 +21,9 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(express.urlencoded());
 app.use(cookieParser());
-app.use('/dist', express.static('dist'));
+app.use('/dist', express.static('dist', {
+  etag: false,
+}));
 app.use('/public/images', express.static('images'));
 
 app.listen(LISTENING_PORT, () => {
@@ -26,8 +31,11 @@ app.listen(LISTENING_PORT, () => {
 });
 
 // routes
-app.use(indexRoute);
+app.use(trailingSlashMiddleware);
+app.use('/', indexRoute);
 app.use('/hobby', hobbyRouter);
+app.use('/provider', providerRouter);
+app.use('/user', userRouter);
 app.use((err: string, req: any, res: any, next: Function) => {
   res.status(404).end();
 });
