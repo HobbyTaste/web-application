@@ -8,9 +8,12 @@ var morgan_1 = __importDefault(require("morgan"));
 var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var mongoose_1 = __importDefault(require("mongoose"));
 var logger_1 = __importDefault(require("./utils/logger"));
+var trailingSlashes_1 = require("./utils/trailingSlashes");
 var config_json_1 = __importDefault(require("./config.json"));
 var index_1 = __importDefault(require("./routes/index"));
 var hobby_1 = __importDefault(require("./routes/hobby"));
+var provider_1 = __importDefault(require("./routes/provider"));
+var user_1 = __importDefault(require("./routes/user"));
 var app = express_1.default();
 var LISTENING_PORT = process.env.PORT || Number(config_json_1.default.port) || 3000;
 var environment = process.env.NODE_ENV;
@@ -18,14 +21,19 @@ app.use(express_1.default.json());
 app.use(morgan_1.default('dev'));
 app.use(express_1.default.urlencoded());
 app.use(cookie_parser_1.default());
-app.use('/dist', express_1.default.static('dist'));
+app.use('/dist', express_1.default.static('dist', {
+    etag: false,
+}));
 app.use('/public/images', express_1.default.static('images'));
 app.listen(LISTENING_PORT, function () {
     logger_1.default.info("Server start listening on PORT: " + LISTENING_PORT + ", http://localhost:" + LISTENING_PORT);
 });
 // routes
-app.use(index_1.default);
+app.use(trailingSlashes_1.trailingSlashMiddleware);
+app.use('/', index_1.default);
 app.use('/hobby', hobby_1.default);
+app.use('/provider', provider_1.default);
+app.use('/user', user_1.default);
 app.use(function (err, req, res, next) {
     res.status(404).end();
 });

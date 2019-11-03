@@ -1,12 +1,15 @@
 import express from 'express';
 import morgan from 'morgan';
-import cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser';
+import expressSession from 'express-session';
+import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
 
 import logger from './utils/logger';
 import {trailingSlashMiddleware} from './utils/trailingSlashes';
 import config from './config.json';
 
+import routes from './routes/routes.json';
 import indexRoute from './routes/index';
 import hobbyRouter from './routes/hobby';
 import providerRouter from './routes/provider';
@@ -16,11 +19,20 @@ const app: express.Application = express();
 
 const LISTENING_PORT = process.env.PORT || Number(config.port) || 3000;
 const environment = process.env.NODE_ENV;
+const MongoStore = connectMongo(expressSession);
 
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(express.urlencoded());
 app.use(cookieParser());
+app.use(expressSession({
+  secret: 'pugs do drugs',
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({
+    url: config.dbHost
+  })
+}));
 app.use('/dist', express.static('dist', {
   etag: false,
 }));
@@ -31,13 +43,12 @@ app.listen(LISTENING_PORT, () => {
 });
 
 // routes
-app.use(trailingSlashMiddleware);
-app.use('/', indexRoute);
-app.use('/hobby', hobbyRouter);
-app.use('/provider', providerRouter);
-app.use('/user', userRouter);
+app.use(routes.index, indexRoute);
+app.use(routes.hobby, hobbyRouter);
+app.use(routes.provider, providerRouter);
+app.use(routes.user, userRouter);
 app.use((err: string, req: any, res: any, next: Function) => {
-  res.status(404).end();
+    res.status(404).end();
 });
 
 // MongoDB

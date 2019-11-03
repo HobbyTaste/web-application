@@ -3,11 +3,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
+var express_1 = require("express");
 var lodash_1 = require("lodash");
+var render_1 = require("../utils/render");
 var hobby_1 = __importDefault(require("../models/hobby"));
 var logger_1 = __importDefault(require("../utils/logger"));
-var hobbyRouter = express_1.default.Router();
+var hobbyRouter = express_1.Router();
+hobbyRouter.get('/', function (req, res) {
+    res.redirect('new');
+});
+hobbyRouter.get('/new', function (req, res) {
+    res.end(render_1.getTemplate());
+});
 hobbyRouter.post('/add', function (req, res) {
     var _a = req.body, label = _a.label, phoneNumber = _a.phoneNumber, address = _a.address, metroStation = _a.metroStation, description = _a.description, shortDescription = _a.shortDescription;
     var hobby = new hobby_1.default({

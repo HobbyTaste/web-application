@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import {string} from "prop-types";
 
 const db = mongoose.connection;
 const Schema = mongoose.Schema;
