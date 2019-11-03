@@ -70,7 +70,7 @@ userRouter.post('/create', async (req: Request, res: Response) => {
     }
 });
 
-userRouter.get(/^\/logout\/?$/, (req: Request, res: Response) => {
+userRouter.get('/logout', (req: Request, res: Response) => {
     if (req.session) {
         req.session.user = null;
     }

@@ -1,0 +1,27 @@
+{
+    "extends": [
+        "tslint:latest",
+        "tslint-eslint-rules",
+        "tslint-react"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "**/*.json"
+        ]
+    },
+    "rules": {
+        "quotemark": [
+            true,
+            "single",
+            "jsx-single",
+            "avoid-escape",
+            "avoid-template"
+        ],
+        "interface-name": [true, "never-prefix"],
+        "jsx-no-multiline-js": false,
+        "array-type": false,
+        "no-submodule-imports": false,
+        "ordered-imports": false,
+        "no-implicit-dependencies": [true, "dev"]
+    }
+}

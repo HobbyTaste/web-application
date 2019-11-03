@@ -21,12 +21,20 @@ module.exports = {
             },
             {
                 test: /\.(jpe?g|png|gif|mp3|svg)$/i,
-                loaders: ['file-loader']
+                loaders: 'file-loader'
+            },
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+                options: {
+                    transpileOnly: true,
+                }
             }
         ]
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx']
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
     },
     output: {
         path: path.resolve(__dirname, './dist/'),

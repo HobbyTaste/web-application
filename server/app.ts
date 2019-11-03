@@ -23,7 +23,7 @@ const MongoStore = connectMongo(expressSession);
 
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(expressSession({
   secret: 'pugs do drugs',
