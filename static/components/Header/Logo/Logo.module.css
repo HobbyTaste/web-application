@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Rancho&display=swap');
+.logo {
+
+    font-size: 40px;
+    margin-bottom: 0;
+    line-height: 50px;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    font-family: "Rancho", cursive;
+    cursor: pointer;
+    margin-top: 0;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 500;
+    box-sizing: border-box;
+    font-variant: tabular-nums;
+    font-feature-settings: 'tnum';
+    --antd-wave-shadow-color: #1890ff;
+
+}

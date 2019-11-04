@@ -1,0 +1,9 @@
+.body {
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 20;
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+    flex-direction: column;
+}

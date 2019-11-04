@@ -1,0 +1,49 @@
+.card img{
+    width: 120px;
+    height: 120px;
+    margin: 5px auto;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+    height: 400px;
+    width: 250px;
+    margin-top: 5px;
+    background-color: floralwhite;
+    border-radius: 2px;
+}
+
+.name {
+    margin: 5px auto;
+    color: #85C633;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.add {
+    color: white;
+    background-color: #85C633;
+    border-radius: 5px;
+    width: 245px;
+    height: 30px;
+    border: none;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    text-align: center;
+}
+
+.buttons button {
+    cursor: pointer;
+    color: white;
+    background-color: #85C633;
+    border-radius: 5px;
+    width: 120px;
+    height: 30px;
+    border: none;
+    margin: 7px auto;
+}

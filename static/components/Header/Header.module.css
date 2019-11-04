@@ -1,0 +1,19 @@
+.header img {
+    width: 20px;
+}
+
+.header {
+    background-color: #85C633;
+    padding: 5px 30px;
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.4);
+    z-index: 20;
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+   /* height: 60px;*/
+}
+.logoContainer {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+}

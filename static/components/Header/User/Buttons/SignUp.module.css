@@ -1,0 +1,37 @@
+.signUp {
+/*    float: right;
+    background: transparent;
+    color: white;
+    margin-top: 20px;
+    padding: 10px 5px;
+    min-width: 150px;
+    font-size: 18px;*/
+
+    margin-right: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    padding: 10px 15px;
+    display: inline-block;
+    outline: none;
+    border: none;
+    background: transparent;
+    transition: all 300ms;
+    box-shadow: none;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.signUp:hover {
+    background: #6a9d29;
+}
+
+@media (max-device-width: 425px), (max-width: 425px) {
+    .signUp {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 20px;
+    }
+}
+

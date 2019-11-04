@@ -1,0 +1,21 @@
+.searchContainer {
+    margin: 70px auto;
+    width: 700px;
+    height: 100px;
+    background-color: whitesmoke;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-style: normal;
+    font-size: 20px;
+    text-align: center;
+    margin: 10px auto;
+}
+
+/*
+.hobbySelect {
+    height: 50px;
+}*/

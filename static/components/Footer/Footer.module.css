@@ -1,0 +1,15 @@
+.footer {
+    min-height: 100px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    display: flex;
+    justify-content: flex-start;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+    height: 60px;
+}
