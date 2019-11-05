@@ -4,7 +4,7 @@
 ```typescript jsx
     import User from './User';
 
-    const userApi = User();
+    const userApi = new User();
     userApi.login('test@email.com', 'password')
         .then((response) => {
            if (response === null) {
