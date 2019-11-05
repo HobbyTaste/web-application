@@ -15,9 +15,11 @@ enum HTTP_STATUS {
     OK = 200,
 }
 
+// Токен для авторизации запросов
+let csrfToken: string | null = null;
+
 export default class BaseFetchClass {
     protected baseUrl: string;
-    private csrfToken: string | null = null;
 
     protected constructor(baseUrl: string) {
         this.baseUrl = baseUrl;
@@ -33,8 +35,8 @@ export default class BaseFetchClass {
         retryOnUnauthorized: true,
     };
 
-    private computeOpts(customOpts?: Partial<IRequestOpts>): IRequestOpts {
-        const authToken = this.csrfToken;
+    private static computeOpts(customOpts?: Partial<IRequestOpts>): IRequestOpts {
+        const authToken = csrfToken;
         const authorization = authToken
             ? {headers: {'csrf-token': authToken}}
             : {};
@@ -45,14 +47,14 @@ export default class BaseFetchClass {
     }
 
     private async baseFetch(relativePath: string, customOpts?: Partial<IRequestOpts>): Promise<Response> {
-        const {retryOnUnauthorized, ...fetchOpts} = this.computeOpts(customOpts);
+        const {retryOnUnauthorized, ...fetchOpts} = BaseFetchClass.computeOpts(customOpts);
         const response: Response = await window.fetch(
             path.join(this.baseUrl, relativePath),
             fetchOpts
         );
 
         if (response.status === HTTP_STATUS.UNAUTHORIZED && retryOnUnauthorized) {
-            this.csrfToken = response.headers.get('csrf-token');
+            csrfToken = response.headers.get('csrf-token');
             const nextOpts: IRequestOpts = {...fetchOpts, retryOnUnauthorized: false};
             return this.baseFetch(relativePath, nextOpts);
         }

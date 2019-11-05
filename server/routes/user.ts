@@ -2,6 +2,7 @@ import {Response, Request, Router} from 'express';
 import {getTemplate} from '../utils/render';
 import User from '../models/user';
 import {user as BASE_URL} from './routes.json';
+import logger from "../utils/logger";
 
 const userRouter: Router = Router({
     strict: true,
@@ -75,6 +76,30 @@ userRouter.get('/logout', (req: Request, res: Response) => {
         req.session.user = null;
     }
     res.end();
+});
+
+interface IQueryInfo {
+    id?: string;
+}
+
+userRouter.get('/info', async (req: Request, res: Response) => {
+    const query: IQueryInfo = req.query;
+    if (query.id) {
+        const user = await User.findById(query.id);
+        if (!user) {
+            res.status(404).end('Не найден такой пользователь');
+            return;
+        }
+        const {_id: id, name: name, email: email} = user;
+        res.json({id, name, email});
+        return;
+    }
+    if (req.session && req.session.user) {
+        const {_id: id, name: name, email: email} = req.session.user;
+        res.json({id, name, email});
+        return;
+    }
+    res.status(403).end('Текущий пользователь не прошел авторизацию');
 });
 
 export default userRouter;

@@ -3,8 +3,15 @@ import BaseFetchClass from './BaseFetchClass';
 const BASE_URL = '/user';
 
 interface ILoginError {
-    email?: string,
-    password?: string,
+    email?: string;
+    password?: string;
+}
+
+interface IUser {
+    id: string;
+    name: string;
+    email: string;
+
 }
 
 /**
@@ -45,9 +52,42 @@ class User extends BaseFetchClass {
 
     /**
      * Logout пользователя
+     * Упех: возвращается null
+     * Ошибка: Возвращается текст ошибки
      */
-    public logout(): Promise<Response> {
-        return this.get('/logout');
+    public async logout(): Promise<null | string> {
+        const resp = await this.get('/logout');
+        if (resp.status === 200) {
+            return null;
+        }
+        return resp.statusText;
+    }
+
+    /**
+     * Получение информации о пользователе
+     * Успех: возвращается объект вида IUser с инфой о пользователе
+     * Ошибка: возвращается ошибка в виде строки (может случаться, если сейчас пользователь не залогинен)
+     */
+    public async getInfo(): Promise<IUser | string> {
+        const response = await this.get('/info');
+        if (response.status === 200) {
+            return response.json();
+        }
+        return response.statusText;
+    }
+
+    /**
+     * Получение информации о пользователе по его id-шнику
+     * @param id - id пользователе
+     * Успех: возвращается объект вида IUser с инфой о пользователе
+     * Ошибка: возвращается ошибка в виде строки (может случаться, если сейчас пользователь не залогинен)
+     */
+    public async getInfoById(id: string): Promise<IUser | string> {
+        const response = await this.get('/info', {id});
+        if (response.status === 200) {
+            return response.json();
+        }
+        return response.statusText;
     }
 }
 
