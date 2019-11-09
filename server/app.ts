@@ -1,9 +1,10 @@
-import express from 'express';
+import express, {NextFunction, Request, Response} from 'express';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import expressSession from 'express-session';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
+import csrf from 'csurf';
 
 import logger from './utils/logger';
 import {trailingSlashMiddleware} from './utils/trailingSlashes';
@@ -33,6 +34,8 @@ app.use(expressSession({
     url: config.dbHost
   })
 }));
+app.use(csrf());
+
 app.use('/dist', express.static('dist', {
   etag: false,
 }));
@@ -47,7 +50,15 @@ app.use(routes.index, indexRoute);
 app.use(routes.hobby, hobbyRouter);
 app.use(routes.provider, providerRouter);
 app.use(routes.user, userRouter);
-app.use((err: string, req: any, res: any, next: Function) => {
+
+// error middleware
+
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    if (err.code === 'EBADCSRFTOKEN') {
+        res.setHeader('csrf-token', req.csrfToken());
+        res.status(401).end();
+        return;
+    }
     res.status(404).end();
 });
 

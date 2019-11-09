@@ -5,7 +5,7 @@ import logger from "../utils/logger";
 const EMAIL_REG_EXP = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
 const SALT_WORK_FACTOR = 10;
 
-interface IUser extends Document {
+export interface IUser extends Document {
   name: string,
   password: string,
   email: string,

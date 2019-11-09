@@ -3,8 +3,8 @@
 Там все написано. Типичный пример по использованию API для LoginUser. 
 ```typescript jsx
     import LoginUser from './LoginUser';
-
-    const userApi = LoginUser();
+    
+    const userApi = new User();
     userApi.login('test@email.com', 'password')
         .then((response) => {
            if (response === null) {
