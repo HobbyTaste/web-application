@@ -21,7 +21,7 @@ userRouter.get(/^\/cabinet\/?/, (req: Request, res: Response) => {
 
 userRouter.post('/login', async (req: Request, res: Response) => {
   if (req.session && req.session.user) {
-    res.redirect(USER_URL_PAGES.cabinet);
+    res.end();
     return;
   }
   const {email, password} = req.body;

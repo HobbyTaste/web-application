@@ -1,10 +1,10 @@
 ## Как пользоваться API
 Прежде чем использовать любое API необходимо будет зайти в папку с апи и почитать документацию. 
-Там все написано. Типичный пример по использованию API для User. 
+Там все написано. Типичный пример по использованию API для LoginUser. 
 ```typescript jsx
-    import User from './User';
+    import LoginUser from './LoginUser';
 
-    const userApi = User();
+    const userApi = LoginUser();
     userApi.login('test@email.com', 'password')
         .then((response) => {
            if (response === null) {

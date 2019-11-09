@@ -1,24 +1,52 @@
 import React from 'react';
-import styles from './FormsControls.module.css'
+import TextField from '@material-ui/core/TextField';
+import {makeStyles} from '@material-ui/core/styles';
 
-const FormControl = ({input, meta, child, ...props}) => {
-    const hasError = meta.touched && meta.error;
-    return(
-        <div className={styles.formControl + " " + (hasError ? styles.error: "")}>
-            <div>
-                {props.children}
-            </div>
-            {hasError && <span>{meta.error}</span>}
+const useStyles = makeStyles(theme => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        padding: '0 10px'
+    },
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: '100%',
+    },
+}));
+
+export const Input = ({ input, label, meta: { error }, ...custom }) => {
+    const classes = useStyles();
+    return (
+        <div>
+            { error ? <div className={classes.container}>
+                <div>
+                    <TextField
+                        error id="outlined-error-helper-text"
+                        label={error}
+                        className={classes.textField}
+                        margin="normal"
+                        variant="outlined"
+                        errortext={error}
+                        {...input}
+                        {...custom}
+                    />
+                </div>
+            </div> : <div className={classes.container}>
+                <TextField
+                    id="outlined-password-input"
+                    label={label}
+                    className={classes.textField}
+                    /*autoFocus={true}*/
+                    type="email"
+                    autoComplete="current-password"
+                    margin="normal"
+                    variant="outlined"
+                    {...input}
+                    {...custom}
+                />
+            </div>}
         </div>
-    );
+   );
 };
 
-export const Textarea = (props) => {
-    const {input, meta, child, ...restProps} = props;
-    return <FormControl {...props}><textarea {...input} {...restProps} /></FormControl>;
-};
-
-export const Input = (props) => {
-    const {input, meta, child, ...restProps} = props;
-    return <FormControl {...props}><input {...input} {...restProps} /></FormControl>;
-};

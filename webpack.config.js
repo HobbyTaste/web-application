@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: './src/main_page/index.js',
+    entry: './static/index.js',
     devtool: 'sourcemap',
     module: {
         rules: [
@@ -16,7 +16,13 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     "style-loader",
-                    "css-loader"
+                    /*"css-loader"*/
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true
+                        }
+                    },
                 ],
             },
             {

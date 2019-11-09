@@ -38,9 +38,9 @@ export default class BaseFetchClass {
         const authorization = authToken
             ? {headers: {'csrf-token': authToken}}
             : {};
-        const opts = customOpts ? merge(BaseFetchClass.defaultOpts, customOpts) : BaseFetchClass.defaultOpts;
+        const opts = customOpts ? merge({}, BaseFetchClass.defaultOpts, customOpts) : BaseFetchClass.defaultOpts;
 
-        return merge(opts, authorization);
+        return merge({}, opts, authorization);
 
     }
 
@@ -77,7 +77,7 @@ export default class BaseFetchClass {
 
     public async post(path: string, body: Object, customOpts: Partial<IRequestOpts> = {}): Promise<Response> {
         const requestUrl = path.replace(/\/$/, '');
-        const opts = merge(customOpts, {body: JSON.stringify(body), method: METHODS.POST})
+        const opts = merge({}, customOpts, {body: JSON.stringify(body), method: METHODS.POST})
         return this.baseFetch(requestUrl, opts);
     }
 }

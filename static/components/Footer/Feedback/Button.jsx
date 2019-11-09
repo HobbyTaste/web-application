@@ -20,28 +20,3 @@ export default function ContainedButtons() {
         </div>
     );
 }
-
-
-/*import React, {Component} from 'react';
-import s from './Button.module.css';
-
-export default function ContainedButtons() {
-    return (
-        <div>
-            <button className={s.button}>
-                ОСТАВИТЬ ОТЗЫВ
-            </button>
-        </div>
-    );
-}*/
-
-/*
-
-const Button = (props) => {
-    return ( <div>
-            <button className={s.button}>ОСТАВИТЬ ОТЗЫВ</button>
-        </div>
-    );
-};
-
-export default Button;*/
