@@ -5,15 +5,6 @@ import UserCabinet from '../user_cabinet/user_cabinet';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import ProviderCabinet from "../provider_cabinet/provider_cabinet";
 import NewHobby from "../new_hobby/new_hobby";
-import User from "../../static/api/User";
-
-const userApi = new User();
-userApi.logout().then(() => {
-    userApi.create('test@mail.ru', '1a25', 'Misha').then(resp => {
-        console.log(resp);
-    });
-
-});
 
 class Page extends React.Component {
     render() {
