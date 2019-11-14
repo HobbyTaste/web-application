@@ -6,6 +6,8 @@ interface IMetro {
 
 /**
  * Апи для получения актуального списка станций метро
+ * https://apidata.mos.ru/Docs#datasetStructure - доки
+ * https://data.mos.ru/classifier/7704786030-stantsii-moskovskogo-metropolitena - данные
  */
 export async function getMetroStations(): Promise<IMetro[]> {
     const apiUrl = 'https://apidata.mos.ru/v1/datasets/1488/rows?api_key=fb1fec8ca7516ede86bf758021706c07';

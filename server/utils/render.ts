@@ -1,3 +1,6 @@
+import {Response, Request} from 'express';
+import {escapeRegExp} from 'lodash';
+
 const TITLE: string = 'Hobby Taste';
 
 function getHeader(): string {
@@ -37,4 +40,17 @@ export function getTemplate() {
           </html>
       `
   );
+}
+
+function getOptionalPath(path: string): RegExp {
+    return RegExp(`^\/${escapeRegExp(path)}\/?$`);
+}
+
+export function renderPage(path: string): [RegExp, (req: Request, res: Response) => void] {
+    return [
+        getOptionalPath(path),
+        (req, res) => {
+            res.end(getTemplate());
+        }
+    ];
 }

@@ -1,6 +1,6 @@
 import {Schema, connection as db, Document} from 'mongoose';
 import bcrypt from 'bcrypt';
-import logger from "../utils/logger";
+import logger from '../utils/logger';
 
 const EMAIL_REG_EXP = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
 const SALT_WORK_FACTOR = 10;
@@ -11,7 +11,7 @@ export interface IUser extends Document {
   email: string,
 }
 
-interface IUserModel extends IUser, Document {
+interface IUserModel extends IUser {
     checkPasswords(candidatePassword: string): Promise<boolean>
 }
 
@@ -24,7 +24,7 @@ const UserSchema: Schema = new Schema({
       type: String,
       required: true,
       unique: true,
-      validate: EMAIL_REG_EXP,
+      match: [EMAIL_REG_EXP, 'Неверный формат email'],
     },
     password: {
       type: String,
