@@ -29,13 +29,13 @@ hobbyRouter.get(...renderPage('new'));
  * Добавление нового хобби в БД
  */
 hobbyRouter.post('/add', async (req: Request, res: Response) => {
-  const hobbyInfo: IHobby = {...req.body};
-  const newHobby = new Hobby({...hobbyInfo});
   try {
+      const hobbyInfo: IHobby = {...req.body};
+      const newHobby = new Hobby({...hobbyInfo});
       await newHobby.save();
       res.status(200).end();
   } catch (e) {
-      res.status(500).end(e);
+      res.status(500).send(e);
   }
 });
 
@@ -55,7 +55,7 @@ hobbyRouter.get('/find', async (req: Request, res: Response) => {
             res.json(hobbies);
             return;
         } catch (e) {
-            res.status(500).end(e);
+            res.status(500).send(e);
             return;
         }
     }
@@ -72,6 +72,7 @@ hobbyRouter.get('/all', async (req: Request, res: Response) => {
     } catch (e) {
         res.status(500).send(e);
     }
+    return;
 });
 
 /**

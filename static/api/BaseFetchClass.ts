@@ -67,12 +67,12 @@ export default class BaseFetchClass {
 
     public async get(
         path: string,
-        query: {[key: string]: string} = {},
+        query: Object = {},
         customOpts?: Partial<IRequestOpts>
     ): Promise<Response> {
-        const queryParams = Object.keys(query).reduce((str: string, key: string) => `${str}&${key}=${query[key]}`, '');
+        const queryParams = Object.keys(query).filter(key => typeof query[key] !== "undefined").reduce((str: string, key: string) => `${str}&${key}=${query[key]}`, '');
         const requestUrl = queryParams
-            ? `${path.replace(/\/$/, '')}/?${queryParams}`
+            ? `${path.replace(/\/$/, '')}?${queryParams.replace(/^&/, '')}`
             : path.replace(/\/$/, '');
         return this.baseFetch(requestUrl, customOpts);
     }

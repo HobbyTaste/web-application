@@ -7,14 +7,13 @@ import mongoose from 'mongoose';
 import csrf from 'csurf';
 
 import logger from './utils/logger';
-import {trailingSlashMiddleware} from './utils/trailingSlashes';
 import config from './config.json';
 
 import routes from './routes/routes.json';
-import indexRoute from './routes/index';
+import indexRouter from './routes/index';
 import hobbyRouter from './routes/hobby';
 import providerRouter from './routes/provider';
-import userRouter from "./routes/user";
+import userRouter from './routes/user';
 
 const app: express.Application = express();
 
@@ -46,7 +45,7 @@ app.listen(LISTENING_PORT, () => {
 });
 
 // routes
-app.use(routes.index, indexRoute);
+app.use(routes.index, indexRouter);
 app.use(routes.hobby, hobbyRouter);
 app.use(routes.provider, providerRouter);
 app.use(routes.user, userRouter);

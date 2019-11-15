@@ -43,7 +43,7 @@ export function getTemplate() {
 }
 
 function getOptionalPath(path: string): RegExp {
-    return RegExp(`^\/${escapeRegExp(path)}\/?$`);
+    return new RegExp(`^\/${escapeRegExp(path)}\/?$`);
 }
 
 export function renderPage(path: string): [RegExp, (req: Request, res: Response) => void] {
