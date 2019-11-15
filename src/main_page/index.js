@@ -5,15 +5,11 @@ import UserCabinet from '../user_cabinet/user_cabinet';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import ProviderCabinet from "../provider_cabinet/provider_cabinet";
 import NewHobby from "../new_hobby/new_hobby";
-import User from "../../static/api/User";
+import Hobby from '../../static/api/Hobby';
 
-const userApi = new User();
-userApi.logout().then(() => {
-    userApi.create('test@mail.ru', '1a25', 'Misha').then(resp => {
-        console.log(resp);
-    });
+const hobbyApi = new Hobby();
 
-});
+hobbyApi.find('ug').then(resp => resp.json()).then(console.log);
 
 class Page extends React.Component {
     render() {

@@ -1,11 +1,11 @@
 import {Router, Request, Response} from 'express';
-import {getTemplate} from '../utils/render';
+import {getTemplate, renderPage} from '../utils/render';
 
-const indexRouter: Router = Router();
-
-indexRouter.get('/', (req: Request, res : Response) => {
-    res.end(getTemplate());
+const indexRouter: Router = Router({
+    strict: true,
 });
+
+indexRouter.get(...renderPage(''));
 
 export default indexRouter;
 

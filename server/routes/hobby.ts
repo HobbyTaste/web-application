@@ -1,74 +1,107 @@
 import {Router, Request, Response} from 'express';
 import {isNil} from 'lodash';
-import {getTemplate} from '../utils/render';
+import {renderPage} from '../utils/render';
 
-import Hobby from '../models/hobby';
-import logger from "../utils/logger";
+import Hobby, {IHobby} from '../models/hobby';
 
-const hobbyRouter: Router = Router();
+const hobbyRouter: Router = Router({
+    strict: true,
+});
 
-interface ReqBodyAddI {
-  label: string;
-  phoneNumber: string;
-  address: string;
-  metroStation: string;
-  description: string;
-  shortDescription: string;
-}
+/**
+ * Страничка поиска хобби с результатами
+ */
+hobbyRouter.get(...renderPage('search'));
 
-interface ReqQueryFindI {
-  label: string;
-  startsWith: string;
-  contains: string;
-}
-
+/**
+ * Редирект на страничку с поиском хобби
+ */
 hobbyRouter.get('/', (req: Request, res: Response) => {
-  res.redirect('new');
+  res.redirect('search');
 });
 
-hobbyRouter.get('/new', (req: Request, res: Response) => {
-  res.end(getTemplate());
+/**
+ * Страничка с формой создания нового хобби
+ */
+hobbyRouter.get(...renderPage('new'));
+
+/**
+ * Добавление нового хобби в БД
+ */
+hobbyRouter.post('/add', async (req: Request, res: Response) => {
+  try {
+      const hobbyInfo: IHobby = {...req.body};
+      const newHobby = new Hobby({...hobbyInfo});
+      await newHobby.save();
+      res.status(200).end();
+  } catch (e) {
+      res.status(500).send(e);
+  }
 });
 
-hobbyRouter.post('/add', (req: Request, res: Response) => {
-  const {label, phoneNumber, address, metroStation, description, shortDescription}: ReqBodyAddI = req.body;
-  const hobby = new Hobby({
-    label,
-    value: label,
-    phoneNumber,
-    address,
-    metroStation,
-    description,
-    shortDescription,
-  });
-  hobby.save()
-      .then((data) => logger.info(`Data was saved to Users model: ${data}`))
-      .catch((error) => logger.error(`An error occurred during saving data to model: ${error}`));
-  res.end();
-});
-
-hobbyRouter.get('/find', (req: Request, res: Response) => {
-    const {startsWith, label, contains}: ReqQueryFindI = req.query;
-    let query;
+/**
+ * Поиск хобби по вхождению в него слова
+ * label - название хобби (возможно только часть)
+ * metroId - id-метро берущийся из стороннего API
+ */
+hobbyRouter.get('/find', async (req: Request, res: Response) => {
+    const {label, metroId}: Partial<IHobby> = req.query;
     if (!isNil(label)) {
-      query = Hobby.find({value: label.toLowerCase()})
-    } else if (!isNil(contains)) {
-        query = Hobby.find({value: RegExp(`${contains.toLowerCase()}`)});
-    } else if (!isNil(startsWith)) {
-        query = Hobby.find({value: RegExp(`^${startsWith.toLowerCase()}`)});
-    } else {
-      res.status(404).end('Check your query params');
-      return;
+        try {
+            const numberMetroId = Number(metroId);
+            const hobbies = isNaN(numberMetroId)
+                ? await Hobby.findByLabel(label)
+                : await Hobby.findByLabelWithGeo(label, numberMetroId);
+            res.json(hobbies);
+            return;
+        } catch (e) {
+            res.status(500).send(e);
+            return;
+        }
     }
-    query
-        .exec()
-        .then((data: any) => {
-            res.status(200).json(data);
-        })
-        .catch((error: string) => {
-          res.status(500).end();
-          logger.error(`An error occurred during finding data in model: ${error}`);
-        });
+    res.status(400).send(`typeof label = ${typeof label}`);
+});
+
+/**
+ * Возвращает все хобби из БД
+ */
+hobbyRouter.get('/all', async (req: Request, res: Response) => {
+    try {
+        const hobbies = await Hobby.find({});
+        res.json(hobbies);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+    return;
+});
+
+/**
+ * Возвращает информацию по конкретному хобби
+ * id - параметр GET запроса
+ */
+hobbyRouter.get('/info', async (req: Request, res: Response) => {
+    const {id} = req.query;
+    try {
+        const hobby = await Hobby.findById(id);
+        res.json(hobby);
+    } catch (e) {
+        res.status(500).send(e);
+    }
+});
+
+/**
+ * Обновляет данные по хобби и его id
+ * id - параметр запроса
+ */
+hobbyRouter.post('/edit', async (req: Request, res: Response) => {
+    const {id} = req.query;
+    const updateParams: IHobby = {...req.body};
+    try {
+        await Hobby.findByIdAndUpdate(id, updateParams);
+        res.end();
+    } catch (e) {
+        res.status(500).send(e);
+    }
 });
 
 export default hobbyRouter;

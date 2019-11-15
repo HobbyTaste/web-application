@@ -1,8 +1,7 @@
 import {Response, Request, Router} from 'express';
-import {getTemplate} from '../utils/render';
+import {renderPage} from '../utils/render';
 import User from '../models/user';
 import {user as BASE_URL} from './routes.json';
-import logger from "../utils/logger";
 
 const userRouter: Router = Router({
     strict: true,
@@ -16,9 +15,7 @@ userRouter.get(/^\/?$/, (req: Request, res: Response) => {
   res.redirect(USER_URL_PAGES.cabinet);
 });
 
-userRouter.get(/^\/cabinet\/?/, (req: Request, res: Response) => {
-  res.end(getTemplate());
-});
+userRouter.get(...renderPage('cabinet'));
 
 userRouter.post('/login', async (req: Request, res: Response) => {
   if (req.session && req.session.user) {
@@ -87,7 +84,7 @@ userRouter.get('/info', async (req: Request, res: Response) => {
     if (query.id) {
         const user = await User.findById(query.id);
         if (!user) {
-            res.status(404).end('Не найден такой пользователь');
+            res.status(404).send('Не найден такой пользователь');
             return;
         }
         const {_id: id, name: name, email: email} = user;
@@ -99,7 +96,7 @@ userRouter.get('/info', async (req: Request, res: Response) => {
         res.json({id, name, email});
         return;
     }
-    res.status(403).end('Текущий пользователь не прошел авторизацию');
+    res.status(403).send('Текущий пользователь не прошел авторизацию');
 });
 
 export default userRouter;
