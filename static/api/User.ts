@@ -11,7 +11,6 @@ interface IUser {
     id: string;
     name: string;
     email: string;
-
 }
 
 /**
@@ -70,10 +69,10 @@ class User extends BaseFetchClass {
      */
     public async getInfo(): Promise<IUser | string> {
         const response = await this.get('/info');
-        if (response.status === 200) {
-            return response.json();
-        }
-        return response.statusText;
+         if (response.status === 200) {
+             return response.json();
+         }
+         return response.statusText;
     }
 
     /**

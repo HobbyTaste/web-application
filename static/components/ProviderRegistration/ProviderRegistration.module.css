@@ -1,0 +1,35 @@
+.form {
+    width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.header {
+    width: 100%;
+    background: linear-gradient(to right, #79827a, #85c633);
+    height: 100px;
+    display: flex;
+    vertical-align: middle;
+    text-align: center;
+    border-bottom: 2px solid black;
+    position:relative;
+}
+
+.headerTitle {
+    color: white;
+    font-size: 30px;
+    margin: auto 20px;
+}
+
+.signIn {
+    margin: auto 0;
+    position: absolute;
+    right: 30px;
+    top: 10px;
+}
+
+.formTitle {
+    margin: 30px auto;
+    width: 1200px;
+}
+

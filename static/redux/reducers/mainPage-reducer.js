@@ -45,8 +45,18 @@ const mainPageReducer = (state = initialState, action) => {
     }
 };
 
+export const setHobbies = () => {
+    return (
+        [   {label: 'A', value: 'A'},
+            {label: 'B', value: 'B'},
+            {label: 'C', value: 'C'},
+            {label: 'D', value: 'D'}
+        ]
+    );
+};
+
 export const installHobbyAC = (hobby) => ({type: INSTALL_HOBBY, hobby});
 export const installMetroAC = (metro) => ({type: INSTALL_METRO, metro});
-export const setHobbies = (hobbies) => ({ type: SET_HOBBIES, hobbies});
+/*export const setHobbies = (hobbies) => ({ type: SET_HOBBIES, hobbies});*/
 export const setMetroStations = (stations) => ({ type: SET_METRO_STATIONS, stations});
 export default mainPageReducer;

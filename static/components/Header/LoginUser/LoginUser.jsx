@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import s from './../Header.module.css';
-import SignIn from "./Buttons/SignIn";
-import SignUp from "./Buttons/SignUp";
-import {Link} from "react-router-dom";
+import {withModalWindow} from "../../../HOC/ModalWindow/ModalWindow";
+import Login from "./SignIn/SignIn";
+import Registration from "../../Registration/Registration";
 
 const LoginUser = (props) => {
-
-    return ( <div className={s.buttonsContainer}>
-            <Link to="/registration"><SignUp /></Link>
-        <SignIn /></div>
+    let SignIn = withModalWindow(Login);
+    let SignUp = withModalWindow(Registration);
+    return (<div className={s.buttonsContainer}>
+            <SignUp buttonName={"РЕГИСТРАЦИЯ"}/>
+            <SignIn buttonName={"ВОЙТИ"}/>
+        </div>
     );
 };
 

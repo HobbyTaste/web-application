@@ -1,6 +1,8 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import {makeStyles} from '@material-ui/core/styles';
+import Select from 'react-select';
+import s from "../../MainPage/SearchContent/Search/Search.module.css";
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -33,12 +35,11 @@ export const Input = ({ input, label, meta: { error }, ...custom }) => {
                     />
                 </div>
             </div> : <div className={classes.container}>
+
                 <TextField
                     id="outlined-password-input"
                     label={label}
                     className={classes.textField}
-                    /*autoFocus={true}*/
-                    type="email"
                     autoComplete="current-password"
                     margin="normal"
                     variant="outlined"
@@ -48,5 +49,20 @@ export const Input = ({ input, label, meta: { error }, ...custom }) => {
             </div>}
         </div>
    );
+};
+
+export const MySelect = (props) => {
+    const { input, options, label } = props;
+    return (
+        <div className={s.searchContainer}>
+            <div className={s.title}>{label}</div>
+        <Select
+            {...input}
+            onChange={value => input.onChange(value)}
+            onBlur={() => input.onBlur(input.value)}
+            options={options}
+        />
+        </div>
+    )
 };
 

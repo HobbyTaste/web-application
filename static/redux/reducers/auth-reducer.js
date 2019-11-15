@@ -4,9 +4,9 @@ import user from "../../api/User";
 const SET_USER_DATA = 'SET-USER-DATA';
 
 let initialState = {
-    name: null,
+    id: null,
     email: null,
-    /*login: null,*/
+    name: null,
     isAuth: false
 };
 const userApi = new user();
@@ -23,17 +23,15 @@ const authReducer = (state = initialState, action) => {
     }
 };
 
-export const setAuthUserData = (name, email, isAuth) =>
-    ({type: SET_USER_DATA, payload:{name, email, isAuth}});
+export const setAuthUserData = (id, email, name, isAuth) =>
+    ({type: SET_USER_DATA, payload:{id, email, name, isAuth}});
 export default authReducer;
 
 export const login = (email, password) => (dispatch) => {
     userApi.login(email, password)
         .then((response) => {
-            debugger;
             if (response === null) {
-                dispatch(setAuthUserData(null, email, true));
-                return;
+                dispatch(getAuthUserData());
             }
             else {
                 if(response.login) {
@@ -49,8 +47,8 @@ export const login = (email, password) => (dispatch) => {
 export const createNewUser = (email, password, name) => (dispatch) => {
     userApi.create(email, password, name).then((response) => {
         if (response === null) {
-            dispatch(setAuthUserData(name, email, true));
-            return;
+            dispatch(getAuthUserData());
+            /*dispatch(setAuthUserData(1, email, name, true));*/
         }
         else {
             alert("error_create");
@@ -61,9 +59,18 @@ export const createNewUser = (email, password, name) => (dispatch) => {
 export const logout = () => (dispatch) => {
     userApi.logout()
         .then(response => {
-            if(response.status === 200) {
-                dispatch(setAuthUserData(null, null, false));
+            if(response === null) {
+                dispatch(setAuthUserData(null, null, null,false));
+            }
+        });
+};
 
+export const getAuthUserData = () => (dispatch) => {
+    return userApi.getInfo()
+        .then(response => {
+            if(typeof response === 'object') {
+                let {id, name, email} = response;
+                dispatch(setAuthUserData(id, email, name, true));
             }
         });
 };

@@ -20,7 +20,7 @@ const theme = createMuiTheme({
 
     const useStyles = makeStyles(theme => ({
     button: {
-        margin: theme.spacing(1),
+        margin: theme.spacing(2),
         height: 48,
         width: '60px',
         padding: '0 60px',
