@@ -14,9 +14,9 @@
 }
 
 .info {
-    height: 450px;
+    height: 470px;
     background-color: white;
-    width: 320px;
+    width: 329px;
     position: relative;
     box-shadow: #79827a;
 
@@ -24,11 +24,45 @@
 
 .img {
     width: 100%;
-    height: 50%;
+    height: 100%;
+    background-image: url("https://mirpozitiva.ru/uploads/posts/2016-08/medium/1472042492_01.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+
+.imgWrapper {
+    width: 323px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid #85C633;
+    height: 300px;
 }
 
 .imgContainer {
-    border: 2px solid #85C633;
+    overflow: hidden;
+    position: relative;
+    float: left;
+    display: inline-block;
+    cursor: pointer;
+    width: 323px;
+    height: 300px;
+
+}
+
+.imgContainer:hover .img,
+.imgContainer:focus .img
+{
+    -ms-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 .layout {
@@ -41,9 +75,10 @@
 .hobbiesBlock {
     height: 200px;
     margin-left: 100px;
-    border: 1px solid red;
+
     width: 1200px;
     position: relative;
+    text-align: center;
 }
 
 .title {
@@ -60,11 +95,62 @@
 
 .hobbiesContainer {
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .addHobbyButton {
-    height: 300px;
+    height: 270px;
     width: 300px;
-    background: url("add.svg") no-repeat center center ;
-    background-size: cover;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+    position: relative;
+    border: none;
+    padding-top: 50px;
+    margin-right: 15px;
+}
+
+.addHobbyButton:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+}
+
+.addHobbyText {
+    color: white;
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+.mdDark {
+    color: white;
+    margin-top: 20px;
+}
+
+.header {
+    width: 100%;
+    background: linear-gradient(to right, #79827a, #85c633);
+    height: 100px;
+    display: flex;
+    vertical-align: middle;
+    text-align: center;
+    border-bottom: 2px solid black;
+    position:relative;
+}
+
+.headerTitle {
+    color: white;
+    font-size: 40px;
+    margin: auto auto;
+}
+
+.closeButton {
+    margin: auto 15px;
+    color: rgba(249, 249, 255, 0.56);
+    cursor: pointer;
+}
+
+.closeButton:hover {
+    color: rgba(249, 249, 255, 0.96);
+    cursor: pointer;
 }

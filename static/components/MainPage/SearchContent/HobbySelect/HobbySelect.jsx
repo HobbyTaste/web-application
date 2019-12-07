@@ -2,9 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm, formValueSelector} from 'redux-form';
 import {MySelect} from "../../../Common/FormsControls/FormsControls";
-import {CommonButton} from "../../../Common/CommonButton";
 import style from "./HobbySelect.module.css";
-import {Link} from 'react-router-dom';
+import {compose} from 'redux';
+import {RedLongButton} from "../../../Common/MaterialsButtons";
+import {Redirect} from "react-router-dom";
+import {setSubmit} from "../../../../redux/reducers/mainPage-reducer";
 
 let SelectForm = ({handleSubmit, hobbies, metroStations}) => {
     return (
@@ -17,11 +19,9 @@ let SelectForm = ({handleSubmit, hobbies, metroStations}) => {
                     <Field name="metro" component={MySelect} options={metroStations} label={"Введите станцию метро"}/>
                 </div>
             </div>
-            <div>
-                <CommonButton className={style.button} text={"Подобрать хобби"} label="Submit" onSubmit={handleSubmit}>
-                    <Link to='/hobbies'><span>Подобрать хобби</span></Link></CommonButton>
-                <Link to='/hobbies'><button>Button</button></Link>
-            </div>
+                <div>
+                    <RedLongButton className={style.button} text={"Подобрать хобби"} label="Submit" onSubmit={handleSubmit} />
+                </div>
         </form>
     )
 };
@@ -31,8 +31,10 @@ const SelectingFormValuesForm = reduxForm({
 })(SelectForm);
 
 const Seleect = (props) => {
+
     const onSubmit = (values, dispatch) => {
         console.log(values);
+        props.setSubmit();
     };
 
     const hobbies = [
@@ -49,36 +51,37 @@ const Seleect = (props) => {
             value: 'Кёрлинг',
         },
     ];
-
-    const metroStations = [
-        {
-            label: 'Марьина роща',
-            value: 'Марьина роща',
-        },
-        {
-            label: 'Алтуфьево',
-            value: 'Алтуфьево',
-        },
-        {
-            label: 'Чистые пруды',
-            value: 'Чистые пруды',
-        },
-    ];
-
-    return(
-        <div>
-            <SelectingFormValuesForm onSubmit={onSubmit} hobbies={hobbies} metroStations={metroStations}/>
-        </div>
-    );
+    const metroStations = props.metroStationsToSelect;
+    {if(props.isSubmit) {
+        return <Redirect to='/hobbies' />;
+    }
+    else {
+        return(
+            <div>
+                <SelectingFormValuesForm onSubmit={onSubmit} hobbies={hobbies} metroStations={metroStations}/>
+            </div>
+        );
+    }
+    }
 };
 
 const selector = formValueSelector('mainSelect');
-export default connect(
-    state => {
-        const hobbyValue = selector(state, 'hobby');
-        const metroValue = selector(state, 'metro');
-        return {
-            hobbyValue, metroValue
+
+const mapStateToProps = (state) => {
+    return {metroStationsToSelect: state.mainPage.metroStationsToSelect,
+            isSubmit: state.mainPage.isSubmit}
+};
+
+export default compose(
+    connect(mapStateToProps, {setSubmit}),
+    connect(
+        state => {
+            const hobbyValue = selector(state, 'hobby');
+            const metroValue = selector(state, 'metro');
+            return {
+                metroStationsToSelect: state.mainPage.metroStationsToSelect,
+                hobbyValue, metroValue
+            }
         }
-    }
+    )
 )(Seleect);

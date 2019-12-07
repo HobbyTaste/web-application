@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -11,7 +12,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function ContainedButtons() {
     const classes = useStyles();
-
     return (
         <div className={s.wrapButton}>
             <Button variant="contained" color="secondary" className={classes.button}>
@@ -19,4 +19,4 @@ export default function ContainedButtons() {
             </Button>
         </div>
     );
-}
+}*/

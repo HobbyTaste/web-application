@@ -17,51 +17,59 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const Input = ({ input, label, meta: { error }, ...custom }) => {
+export const Input = ({input, label, meta: {error}, ...custom}) => {
     const classes = useStyles();
     return (
         <div>
-            { error ? <div className={classes.container}>
-                <div>
-                    <TextField
-                        error id="outlined-error-helper-text"
-                        label={error}
-                        className={classes.textField}
-                        margin="normal"
-                        variant="outlined"
-                        errortext={error}
-                        {...input}
-                        {...custom}
-                    />
-                </div>
-            </div> : <div className={classes.container}>
-
+            {error ? <div className={classes.container}>
                 <TextField
-                    id="outlined-password-input"
-                    label={label}
+                    error id="outlined-error-helper-text"
+                    label={error}
                     className={classes.textField}
-                    autoComplete="current-password"
+                    margin="normal"
+                    variant="outlined"
+                    errortext={error}
+                    {...input}
+                    {...custom}
+                />
+            </div> : <div className={classes.container}>
+                <TextField
+                    id="outlined-textarea"
+                    className={classes.textField}
+                    label={custom.fieldName}
+                    type={custom.type}
                     margin="normal"
                     variant="outlined"
                     {...input}
                     {...custom}
                 />
+                {/*<TextField
+                    id="outlined-textarea"
+                    label={custom.fieldName}
+                    className={classes.textField}
+                    type={custom.type}
+                    multiline
+                    margin="normal"
+                    variant="outlined"
+                    {...input}
+                    {...custom}
+                />*/}
             </div>}
         </div>
-   );
+    );
 };
 
 export const MySelect = (props) => {
-    const { input, options, label } = props;
+    const {input, options, label} = props;
     return (
         <div className={s.searchContainer}>
             <div className={s.title}>{label}</div>
-        <Select
-            {...input}
-            onChange={value => input.onChange(value)}
-            onBlur={() => input.onBlur(input.value)}
-            options={options}
-        />
+            <Select
+                {...input}
+                onChange={value => input.onChange(value)}
+                onBlur={() => input.onBlur(input.value)}
+                options={options}
+            />
         </div>
     )
 };

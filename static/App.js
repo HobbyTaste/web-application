@@ -4,23 +4,22 @@ import MainPage from './components/MainPage/MainPage';
 import Hobbies from './components/Hobbies/Hobbies'
 import UserCabinet from "./components/UserCabinet/UserCabinet";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import {ProviderRegistration} from "./components/ProviderRegistration/ProviderRegistration";
 import ProviderCabinet from "./components/ProviderCabinet/ProviderCabinet";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/reducers/app-reducer";
+import UserCabinetContainer from "./components/UserCabinet/UserCabinetContainer";
+import Preloader from "./components/Common/Preloader/Preloader";
 
 class App extends React.Component {
     componentDidMount() {
         this.props.initializeApp();
     }
     render() {
-        if (!this.props.initialized) {
-            return <div>no initialized</div>;
-        }
-            return (<div>
-                   {/* <HeaderContainer/>
-                    <ProviderCabinet/>*/}
+        /*if (!this.props.initialized) {
+            return <Preloader />;
+        }*/
+            return (
                     <div className="app-wrapper">
                         <HeaderContainer/>
                         <div className="app-wrapper-content">
@@ -28,10 +27,8 @@ class App extends React.Component {
                             <Route exact path="/hobbies" render={() => <Hobbies/>}/>
                             <Route exact path="/user_cabinet" render={() => <UserCabinet/>}/>
                             <Route exact path="/provider_cabinet" render={() => <ProviderCabinet/>}/>
-                            <Route exact path="/provider_registration" render={() => <ProviderRegistration/>}/>
                         </div>
                     </div>
-                </div>
             );
     }
 }

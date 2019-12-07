@@ -1,13 +1,16 @@
 import {stopSubmit} from "redux-form";
 import user from "../../api/User";
 
-const SET_USER_DATA = 'SET-USER-DATA';
+const SET_USER_DATA = 'SET_USER_DATA';
+const IN_USER_CABINET = 'IN_USER_CABINET';
+const OUT_USER_CABINET = 'OUT_USER_CABINET';
 
 let initialState = {
     id: null,
     email: null,
     name: null,
-    isAuth: false
+    isAuth: false,
+    inUserCabinet: false
 };
 const userApi = new user();
 
@@ -18,6 +21,17 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload
             };
+        case IN_USER_CABINET:
+            return {
+                ...state,
+                inUserCabinet: true
+            };
+        case OUT_USER_CABINET: {
+            return {
+                ...state,
+                inUserCabinet: false
+            }
+        }
         default:
             return state;
     }
@@ -25,6 +39,8 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUserData = (id, email, name, isAuth) =>
     ({type: SET_USER_DATA, payload:{id, email, name, isAuth}});
+export const setInCabinet = () => ({type: IN_USER_CABINET});
+export const setOutCabinet = () => ({type: OUT_USER_CABINET});
 export default authReducer;
 
 export const login = (email, password) => (dispatch) => {

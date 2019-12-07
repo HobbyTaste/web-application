@@ -1,0 +1,30 @@
+.upload {
+    color: #85c633;
+    cursor: pointer;
+}
+.upload:hover {
+    color: #6a9d29;
+}
+
+.input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.label {
+    margin-left: 20px;
+}
+
+.uploadContainer {
+    text-align: center;
+}
+
+.saveButton {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}

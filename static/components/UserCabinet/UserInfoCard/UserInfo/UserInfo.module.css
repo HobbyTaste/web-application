@@ -1,0 +1,21 @@
+
+.name {
+    color: #85c633;
+    margin-top: 10px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.userInfo {
+    font-size: 18px;
+}
+
+.information {
+    text-align: left;
+}
+
+.buttonContainer {
+    display: flex;
+    width: 50%;
+    margin-left: 10px;
+}

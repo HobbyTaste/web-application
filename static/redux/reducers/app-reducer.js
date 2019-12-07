@@ -1,4 +1,5 @@
 import {getAuthUserData} from "./auth-reducer";
+import {getMetro} from "./mainPage-reducer";
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
@@ -22,7 +23,8 @@ export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
 
 export const initializeApp = () => (dispatch) => {
     let promise = dispatch(getAuthUserData());
-    Promise.all([promise])
+    let promise2 = dispatch(getMetro());
+    Promise.all([promise, promise2])
         .then(() => {
             dispatch(initializedSuccess());
         });

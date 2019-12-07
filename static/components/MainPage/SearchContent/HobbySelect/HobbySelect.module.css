@@ -15,3 +15,9 @@
     line-height: 1.75;
     cursor: pointer;*/
 }
+
+.tmp {
+    border: 1px solid red;
+    width: 100px;
+    display: flex;
+}

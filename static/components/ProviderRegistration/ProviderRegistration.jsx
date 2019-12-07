@@ -1,25 +1,26 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {Input} from "../Common/FormsControls/FormsControls";
-import {connect} from "react-redux";
-import {CommonButton} from "../Common/CommonButton";
 import style from "./ProviderRegistration.module.css";
+import {GreenButton} from "../Common/MaterialsButtons";
 
 
-const ProviderRegistrationForm = ({handleSubmit, error}) => {
+const ProviderRegistrationForm = ({handleSubmit, error, ...custom}) => {
     return (
         <form onSubmit={handleSubmit} className={style.form}>
             <div><Field component={Input} name={"organization"} placeholder={"Название организации *"}
-                        autoFocus={true}/></div>
-            <div><Field component={Input} name={"telephone"} placeholder={"Контактный телефон *"} type={"telephone"}/>
+                        autoFocus={true} fieldName={"Название организации"}/></div>
+            <div><Field component={Input} name={"telephone"} placeholder={"Контактный телефон *"} type={"telephone"}
+                        fieldName={"Контактный телефон"}/>
             </div>
-            <div><Field component={Input} name={"email"} placeholder={"Почта *"} type={"email"}/></div>
-            <div><Field component={Input} name={"site"} placeholder={"Сайт *"}/></div>
-            <div><Field component={Input} name={"info"} placeholder={"Информация о вас *"}/></div>
+            <div><Field component={Input} name={"email"} placeholder={"Почта *"} type={"email"} fieldName={"Почта"}/></div>
+            <div><Field component={Input} name={"site"} placeholder={"Сайт *"} fieldName={"Сайт"}/></div>
+            <div><Field component={Input} name={"info"} placeholder={"Информация о вас *"} fieldName={"Информация о вас"}/></div>
             <div><Field component={Input} name={"password"} placeholder={"Пароль для входа в личный кабинет *"}
-                        type={"password"}/></div>
-            <div><Field component={Input} name={"password"} placeholder={"Повторите пароль *"} type={"password"}/></div>
-            <CommonButton text={"ЗАРЕГИСТРИРОВАТЬСЯ"} label="Submit" onSubmit={handleSubmit}>ВОЙТИ</CommonButton>
+                        type={"password"} fieldName={"Пароль для входа в личный кабинет"}/></div>
+            <div><Field component={Input} name={"password"} placeholder={"Повторите пароль *"} type={"password"}
+                        fieldName={"Повторите пароль"}/></div>
+            <GreenButton text={"ЗАРЕГИСТРИРОВАТЬСЯ"} label="Submit" onSubmit={handleSubmit} onClick={custom.handleClose}>ВОЙТИ</GreenButton>
         </form>
     );
 };
@@ -35,19 +36,10 @@ export const ProviderRegistration = (props) => {
 
     return (
         <div>
-            <div className={style.header}>
-                <div className={style.headerTitle}>Вход в личный кабинет партнера</div>
-                <div className={style.signIn}>
-                    <CommonButton text={"ВОЙТИ"}>ВОЙТИ</CommonButton>
-                </div>
-            </div>
             <div>
             <h1 className={style.formTitle}>Заполните небольшую форму регистрации и укажите информацию о себе</h1>
-            <RegistrationReduxForm onSubmit={onSubmit}/>
+            <RegistrationReduxForm onSubmit={onSubmit} handeClose={props.handleClose}/>
             </div>
         </div>
     );
 };
-
-/*
-export default connect(null, {login})(Login);*/
