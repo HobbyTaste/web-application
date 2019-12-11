@@ -32,6 +32,7 @@
     "react-scripts": "2.1.5",
     "react-select": "^3.0.8",
     "react-semanticui-modal": "^0.2.8",
+    "react-spring": "^8.0.27",
     "react-text-mask": "^5.4.3",
     "redux": "^4.0.4",
     "redux-form": "^8.2.6",
@@ -105,12 +106,5 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.2.1"
-  },
-  "presets": [
-    "@babel/preset-env",
-    "@babel/preset-react"
-  ],
-  "plugins": [
-    "@babel/plugin-proposal-class-properties"
-  ]
+  }
 }
