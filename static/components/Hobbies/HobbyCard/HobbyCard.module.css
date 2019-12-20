@@ -1,24 +1,24 @@
-.card img{
-    width: 120px;
-    height: 120px;
-    margin: 5px auto;
-}
 .card {
     display: flex;
     flex-direction: column;
-    border: 2px solid white;
-    height: 400px;
-    width: 250px;
-    margin-top: 5px;
+    box-shadow: #79827a;
+    height: 550px;
+    width: 315px;
+    margin-top: 15px;
     background-color: floralwhite;
     border-radius: 2px;
 }
 
+.ul {
+    margin-top: 0;
+}
+
 .name {
-    margin: 5px auto;
+    margin: 10px auto;
     color: #85C633;
-    font-size: 18px;
+    font-size: 24px;
     font-style: italic;
+    filter: drop-shadow(1px 1px green);
 }
 
 .add {
@@ -34,9 +34,12 @@
 
 .buttons {
     display: flex;
-    text-align: center;
+    flex-wrap: wrap;
+    padding: 5px;
+    font-size: 12px;
 }
 
+/*
 .buttons button {
     cursor: pointer;
     color: white;
@@ -46,4 +49,4 @@
     height: 30px;
     border: none;
     margin: 7px auto;
-}
+}*/

@@ -1,0 +1,42 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: #79827a;
+    height: 550px;
+    width: 315px;
+    /*margin-top: 15px;*/
+    background-color: floralwhite;
+    border-radius: 2px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ul {
+    margin-top: 0;
+}
+
+.name {
+    margin: 10px auto;
+    color: #85C633;
+    font-size: 24px;
+    font-style: italic;
+    filter: drop-shadow(1px 1px green);
+}
+
+.add {
+    color: white;
+    background-color: #85C633;
+    border-radius: 5px;
+    width: 245px;
+    height: 30px;
+    border: none;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+    font-size: 12px;
+}

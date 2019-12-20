@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Route, withRouter} from 'react-router-dom';
 import MainPage from './components/MainPage/MainPage';
 import Hobbies from './components/Hobbies/Hobbies'
-import UserCabinet from "./components/UserCabinet/UserCabinet";
+/*import UserCabinet from "./components/UserCabinet/UserCabinet";*/
 import HeaderContainer from "./components/Header/HeaderContainer";
 import ProviderCabinet from "./components/ProviderCabinet/ProviderCabinet";
 import {connect} from "react-redux";
@@ -16,16 +16,17 @@ class App extends React.Component {
         this.props.initializeApp();
     }
     render() {
-        /*if (!this.props.initialized) {
+        if (!this.props.initialized) {
             return <Preloader />;
-        }*/
+        }
             return (
                     <div className="app-wrapper">
                         <HeaderContainer/>
                         <div className="app-wrapper-content">
                             <Route exact path="/" render={() => <MainPage/>}/>
+                            <Route exact path="/main_page" render={() => <MainPage/>}/>
                             <Route exact path="/hobbies" render={() => <Hobbies/>}/>
-                            <Route exact path="/user_cabinet" render={() => <UserCabinet/>}/>
+                            <Route exact path="/user_cabinet" render={() => <UserCabinetContainer/>}/>
                             <Route exact path="/provider_cabinet" render={() => <ProviderCabinet/>}/>
                         </div>
                     </div>

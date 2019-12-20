@@ -19,7 +19,7 @@ let SelectForm = ({handleSubmit, hobbies, metroStations}) => {
                     <Field name="metro" component={MySelect} options={metroStations} label={"Введите станцию метро"}/>
                 </div>
             </div>
-                <div>
+                <div className={style.SearchHobbyButton}>
                     <RedLongButton className={style.button} text={"Подобрать хобби"} label="Submit" onSubmit={handleSubmit} />
                 </div>
         </form>

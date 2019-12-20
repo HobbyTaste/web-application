@@ -23,7 +23,6 @@ let initialState = {
 const ProviderCabinetReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_ORGANIZATION:
-            debugger;
             return {...state , organization: action.organization};
         case SET_TELEPHONE:
             return {...state , telephone: action.telephone};

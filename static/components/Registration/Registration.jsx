@@ -4,21 +4,24 @@ import {Input} from "../Common/FormsControls/FormsControls";
 /*import {maxLengthCreator, required} from "../../utils/validators/validators";*/
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
-import style from "./../Common/FormsControls/FormsControls.module.css"
 import createField from "./../Common/FormsControls/FormsControls";
 import {createNewUser} from "../../redux/reducers/auth-reducer";
+import style from ".././Header/LoginUser/SignIn/SignIn.module.css";
+import {RedButton} from "../Common/MaterialsButtons";
 
 /*const maxLength = maxLengthCreator(30);*/
 
-const RegistrationForm = (props) => {
+const RegistrationForm = ({handleSubmit, error}) => {
     return(
-        <form onSubmit={props.handleSubmit}>
-            <div><Field component={"input"} name={"email"} placeholder={"Email"} /></div>
-            <div><Field component={"input"} name={"password"} placeholder={"Password"} type={"password"} /></div>
-            <div><Field component={"input"} name={"name"} placeholder={"Name"} /></div>
-            <div>
+        <form onSubmit={handleSubmit}>
+            <div><Field component={Input} name={"email"} placeholder={"Email *"} autoFocus={true} fieldName={"Email"}/></div>
+            <div><Field component={Input} name={"password"} placeholder={"Пароль *"} type={"password"} fieldName={"Пароль"}/></div>
+            <div><Field component={Input} name={"name"} placeholder={"Имя *"} fieldName={"Имя"}/></div>
+            <RedButton text={"Регистрация"} label="Submit" onSubmit={handleSubmit} />
+
+            {/*<div>
                 <button>Зарегистрироваться</button>
-            </div>
+            </div>*/}
         </form>
     );
 };
@@ -33,7 +36,7 @@ const Registration = (props) => {
 
     return(
         <div>
-            <h1>Регистрация</h1>
+            <h1 className={style.label}>Регистрация</h1>
             <RegistrationReduxForm onSubmit={onSubmit} />
         </div>
     );

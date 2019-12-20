@@ -9,7 +9,6 @@ const Header = (props) => {
     return (
         <header className={s.header}>
             <div className={s.logoContainer}><Logo /></div>
-            <Link to='/provider_cabinet'><button>В кабинет партнера</button></Link>
             { props.isAuth
                 ? <div className={s.tmp}><LogoutUser logout={props.logout} inUserCabinet={props.inUserCabinet}
                                                      setInCabinet={props.setInCabinet} setOutCabinet={props.setOutCabinet}/></div>

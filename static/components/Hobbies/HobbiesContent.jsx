@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import s from './HobbiesContent.module.css';
 import HobbyCard from "./HobbyCard/HobbyCard";
+import {Link} from 'react-router-dom';
 
 
 let HobbiesContent = (props) => {
@@ -11,7 +12,8 @@ let HobbiesContent = (props) => {
         pages.push(i);
     }*/
 
-    const hobbyCards = props.hobbyCards.map(c => <HobbyCard {...c}/>);
+    const hobbyCards = props.hobbyCards.map(c => <HobbyCard {...c}
+                                                            addMyHobby={props.addMyHobby}/>);
 
     return (<div>
         <div className={s.title}>Результаты поиска</div>

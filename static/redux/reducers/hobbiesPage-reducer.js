@@ -5,28 +5,34 @@ const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 
 let initialState = {
     hobbyCards: [{
-        photo: "http://rs-odessa.org.ua/wp-content/uploads/2016/07/rubikscubes.jpg",
-        name: "Хобби", description: {
+        photo: "https://static.mk.ru/upload/entities/2018/09/13/articles/detailPicture/88/68/4b/6f/1465fb241b8ddf492b3de2bb6899f436.jpg",
+        name: "Футбол",
+        id: 1,
+        description: {
             telephone: "+7-123-456-78-90",
-            email: "hobby@mail.ru",
-            location: "ул.Тимирязева, д.7",
-            info: "Хобби вашей мечты на улице Тимирязева, дом 7."
+            email: "football@mail.ru",
+            location: "м.Тимирязевская, ул.Тимирязева, д.7",
+            info: "Футбольная секция для детей и взрослых"
         }
     },{
-        photo: "http://rs-odessa.org.ua/wp-content/uploads/2016/07/rubikscubes.jpg",
-        name: "Хобби", description: {
-            telephone: "+7-123-456-78-90",
-            email: "hobby@mail.ru",
-            location: "ул.Тимирязева, д.7",
-            info: "Хобби вашей мечты на улице Тимирязева, дом 7."
+        photo: "http://www.min2win.ru/images/nails/7097l_300.jpg",
+        name: "Шашки",
+        id: 2,
+        description: {
+            telephone: "+7-800-555-35-35",
+            email: "chess@mail.ru",
+            location: "м.Новослободская, ул.Кравченко, д.53",
+            info: "Турниры по шашкам каждую пятницу! Вход свободный."
         }
     }, {
-        photo: "http://rs-odessa.org.ua/wp-content/uploads/2016/07/rubikscubes.jpg",
-        name: "Хобби", description: {
-            telephone: "+7-123-456-78-90",
-            email: "hobby@mail.ru",
-            location: "ул.Тимирязева, д.7",
-            info: "Хобби вашей мечты на улице Тимирязева, дом 7."
+        photo: "https://cdn.fishki.net/upload/post/2016/05/06/1942632/tn/1118full-anna-sidorova.jpg",
+        name: "Керлинг",
+        id: 3,
+        description: {
+            telephone: "+7-495-879-78-92",
+            email: "kerling@mail.ru",
+            location: "м.Марьина Роща, клуб Новая Лига",
+            info: "Тренировки с 19 до 21 каждый вторник и четверг."
         }
     }],
     pageSize: 3,

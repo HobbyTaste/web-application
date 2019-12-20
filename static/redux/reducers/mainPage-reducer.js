@@ -9,13 +9,7 @@ const SUBMIT = 'SUBMIT';
 
 let initialState = {
     hobbies: [
-        {value: 'футбол', label: 'футбол'},
-        {value: 'баскетбол', label: 'баскетбол'},
-        {value: 'шахматы', label: 'шахматы'},
-        {value: 'тенис', label: 'тенис'},
-        {value: 'керлинг', label: 'керлинг'},
-        {value: 'игры', label: 'игры'},
-        {value: 'плавание', label: 'плавание'}
+        {value: 'футбол', label: 'футбол'}
     ],
     metroStations: [],
     metroStationsToSelect: [],

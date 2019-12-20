@@ -6,6 +6,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Slide from '@material-ui/core/Slide';
 import {ProviderRegistration} from "../../ProviderRegistration/ProviderRegistration";
 import {GreenButton, GreenLargeButton} from "../../Common/MaterialsButtons";
+import CloseIcon from '@material-ui/icons/Close';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -36,9 +38,11 @@ export const FullScreenDialogButton = (props) => {
                     <div className={style.header}>
                         <div className={style.headerTitle}>Вход в личный кабинет партнера</div>
                         <div className={style.signIn}>
-                            <div onClick={handleClose} >
-                                <GreenButton text={"ВОЙТИ"} />
-                            </div>
+                            <Link to='/provider_cabinet'>
+                            <button className={style.tmpButton}>ВОЙТИ</button>
+                            </Link>
+                           {/* <GreenButton text={"ВОЙТИ"} />*/}
+                            <CloseIcon style={{fontSize: 50}} className={style.closeButton} onClick={handleClose}/>
                         </div>
                     </div>
                 </AppBar>

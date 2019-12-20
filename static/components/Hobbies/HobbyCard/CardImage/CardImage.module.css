@@ -1,0 +1,43 @@
+
+.img {
+    width: 100%;
+    height: 100%;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+
+.imgWrapper {
+    width: 309px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid #85C633;
+    height: 259px;
+}
+
+.imgContainer {
+    overflow: hidden;
+    position: relative;
+    float: left;
+    display: inline-block;
+    cursor: pointer;
+    width: 309px;
+    height: 259px;
+
+}
+
+.imgContainer:hover .img,
+.imgContainer:focus .img
+{
+    -ms-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+}

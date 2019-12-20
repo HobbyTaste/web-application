@@ -1,7 +1,7 @@
 .body {
     display: flex;
     flex-wrap: wrap;
-    height: 510px;
+    height: 600px;
     z-index: 20;
     position: relative;
     width: 1000px;

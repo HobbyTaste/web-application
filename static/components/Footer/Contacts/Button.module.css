@@ -36,7 +36,7 @@
     vertical-align: middle;
     text-align: center;
     border-bottom: 2px solid black;
-    position:relative;
+    /*position:relative;*/
 }
 
 .headerTitle {
@@ -46,10 +46,13 @@
 }
 
 .signIn {
-    margin: auto 0;
     position: absolute;
-    right: 30px;
-    top: 10px;
+    right: 40px;
+    top: 15px;
+    display: flex;
+    align-items: center;
+    width: 300px;
+    justify-content: flex-end;
 }
 
 .formTitle {
@@ -57,3 +60,24 @@
     width: 1200px;
 }
 
+.closeButton {
+    margin: auto 15px;
+    color: rgba(249, 249, 255, 0.56);
+    cursor: pointer;
+}
+
+.closeButton:hover {
+    color: rgba(249, 249, 255, 0.96);
+    cursor: pointer;
+}
+
+.tmpButton {
+    height: 48px;
+    width: 120px;
+    margin-top: auto;
+    margin-bottom: auto;
+    border-radius: 10px;
+    background-color: #85C633;
+    color: white;
+    border: 1px solid green;
+}

@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 import MainPageButton from "./Buttons/MainPageButton";
 
 const LogoutUser = (props) => {
-
     return (<div className={s.buttonsContainer}>
             {
                 props.inUserCabinet ?

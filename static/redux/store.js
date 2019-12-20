@@ -6,6 +6,7 @@ import { reducer as formReducer } from 'redux-form'
 import thunkMiddleware from "redux-thunk";
 import appReducer from "./reducers/app-reducer";
 import ProviderCabinetReducer from "./reducers/provider-reducer";
+import UserCabinetReducer from "./reducers/user-reducer";
 
 let reducers = combineReducers({
     mainPage: mainPageReducer,
@@ -13,7 +14,8 @@ let reducers = combineReducers({
     auth: authReducer,
     form: formReducer,
     app: appReducer,
-    providerCabinet: ProviderCabinetReducer
+    providerCabinet: ProviderCabinetReducer,
+    userCabinet: UserCabinetReducer
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 let store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));

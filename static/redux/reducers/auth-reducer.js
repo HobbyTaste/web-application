@@ -19,7 +19,10 @@ const authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.payload
+                id: action.id,
+                email: action.email,
+                name: action.name,
+                isAuth: action.isAuth
             };
         case IN_USER_CABINET:
             return {
@@ -38,7 +41,7 @@ const authReducer = (state = initialState, action) => {
 };
 
 export const setAuthUserData = (id, email, name, isAuth) =>
-    ({type: SET_USER_DATA, payload:{id, email, name, isAuth}});
+    ({type: SET_USER_DATA, id, email, name, isAuth});
 export const setInCabinet = () => ({type: IN_USER_CABINET});
 export const setOutCabinet = () => ({type: OUT_USER_CABINET});
 export default authReducer;

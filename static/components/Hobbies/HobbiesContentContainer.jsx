@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {setHobbyCards, setCurrentPage, setTotalHobbiesCount, toggleIsFetching} from "../../redux/reducers/hobbiesPage-reducer";
 import HobbiesContent from "./HobbiesContent";
+import {addMyHobby} from "../../redux/reducers/user-reducer";
 
 class HobbiesContentContainer extends React.Component {
 
     render() {
         return <div>
-            <HobbiesContent hobbyCards={this.props.hobbyCards} pageSize={this.props.pageSize}/>
+            <HobbiesContent hobbyCards={this.props.hobbyCards} pageSize={this.props.pageSize}
+                            addMyHobby={this.props.addMyHobby}/>
         </div>
     }
 }
@@ -22,7 +24,7 @@ let mapStateToProps = (state) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
+/*let mapDispatchToProps = (dispatch) => {
   return {
       setHobbyCards: (hobbyCards) => {
           dispatch(setHobbyCards(hobbyCards));
@@ -37,6 +39,6 @@ let mapDispatchToProps = (dispatch) => {
           dispatch(toggleIsFetching(isFetching));
       }
   }
-};
+};*/
 
-export default connect(mapStateToProps, mapDispatchToProps)(HobbiesContentContainer)
+export default connect(mapStateToProps, {addMyHobby})(HobbiesContentContainer)

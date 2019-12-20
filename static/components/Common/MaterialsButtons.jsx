@@ -46,8 +46,44 @@ const useStyles = makeStyles(theme => ({
         borderRadius: '10px',
         float: 'right',
         textAlign: 'left'
+    },
+    addHobbyButton: {
+        height: '40px',
+        width: '95%',
+        float: 'right',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    },
+    smallHobbyButton: {
+        marginTop: '5px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        height: '50px',
+        width: '142px',
     }
 }));
+
+export const SmallHobbyButton = (props) => {
+    const classes = useStyles();
+    return (
+        <ThemeProvider theme={theme}>
+            <Button theme={theme} variant="contained" color="primary" className={classes.smallHobbyButton} onClick={props.onSubmit}>
+                {props.text}
+            </Button>
+        </ThemeProvider>
+    );
+};
+
+export const HobbyCardAddButton = (props) => {
+    const classes = useStyles();
+    return (
+        <ThemeProvider theme={theme}>
+            <Button theme={theme} variant="contained" color="primary" className={classes.addHobbyButton} onClick={props.onSubmit}>
+                {props.text}
+            </Button>
+        </ThemeProvider>
+    );
+};
 
 export const GreenButton = (props) => {
     const classes = useStyles();
@@ -92,6 +128,8 @@ export const RedButtonLarge = (props) => {
         </ThemeProvider>
     );
 };
+
+
 
 export const RedLongButton = (props) => {
     const classes = useStyles();
