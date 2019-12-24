@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: './static/index.js',
@@ -16,7 +15,6 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     "style-loader",
-                    /*"css-loader"*/
                     {
                         loader: 'css-loader',
                         options: {
@@ -27,7 +25,7 @@ module.exports = {
             },
             {
                 test: /\.(jpe?g|png|gif|mp3|svg)$/i,
-                loaders: 'file-loader'
+                loader: 'file-loader'
             },
             {
                 test: /\.tsx?$/,
@@ -47,13 +45,4 @@ module.exports = {
         filename: 'main.js',
         publicPath: "/dist/"
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: 'index.css',
-            chunkFilename: '0.css',
-        }),
-    ],
 };
