@@ -47,7 +47,8 @@
     "build:front": "webpack --mode production",
     "build:front:watch": "webpack --watch --mode development",
     "build:server": "tsc -p ./server",
-    "build": "webpack --mode production && tsc -p ./server"
+    "build": "webpack --mode production && tsc -p ./server",
+    "release": "sh tasks/release.sh"
   },
   "eslintConfig": {
     "extends": "react-app"
