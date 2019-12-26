@@ -9,13 +9,13 @@ jobs:
   build:
     name: Building app
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10]
 
     steps:
-      - name: Hello world
-        uses: actions/hello-world-javascript-action@v1
-        with:
-          who-to-greet: 'Mona the Octocat'
-        id: hello
-      # This step prints an output (time) from the previous step's action.
-      - name: Echo the greeting's time
-        run: echo 'The time was ${{ steps.hello.outputs.time }}.'
+      - uses: actions/checkout@v1
+      - name: building...
+        run: |
+          yarn
+          yarn build
