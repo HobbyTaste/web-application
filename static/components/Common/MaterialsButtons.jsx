@@ -8,9 +8,9 @@ import {ThemeProvider} from '@material-ui/styles';
 const theme = createMuiTheme({
     palette: {
         primary: {
-            light: '#00e676',
-            main: '#85c633',
-            dark: '#69aa33',
+            light: '#19f391',
+            main: '#19B95D',
+            dark: '#19934c',
             contrastText: '#fff',
         },
         secondary: {
@@ -100,7 +100,7 @@ export const GreenLargeButton = (props) => {
     const classes = useStyles();
     return (
         <ThemeProvider theme={theme}>
-            <Button theme={theme} variant="contained" color="primary" className={classes.buttonLarge} onClick={props.onSubmit}>
+            <Button theme={theme} variant="contained" color="primary" className={classes.buttonLong} onClick={props.onSubmit}>
                 {props.text}
             </Button>
         </ThemeProvider>

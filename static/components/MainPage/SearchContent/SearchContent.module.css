@@ -7,3 +7,9 @@
     margin: 70px auto;
     flex-direction: column;
 }
+
+.mainTitle {
+    color: white;
+    margin: 1px auto;
+    font-size: 52px;
+}

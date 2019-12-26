@@ -23,8 +23,8 @@ export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
 
 export const initializeApp = () => (dispatch) => {
     let promise = dispatch(getAuthUserData());
-    let promise2 = dispatch(getMetro());
-    Promise.all([promise, promise2])
+    //let promise2 = dispatch(getMetro());
+    Promise.all([promise])
         .then(() => {
             dispatch(initializedSuccess());
         });

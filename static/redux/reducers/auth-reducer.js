@@ -65,13 +65,14 @@ export const login = (email, password) => (dispatch) => {
 
 export const createNewUser = (email, password, name) => (dispatch) => {
     userApi.create(email, password, name).then((response) => {
+        debugger;
         if (response === null) {
             dispatch(getAuthUserData());
             /*dispatch(setAuthUserData(1, email, name, true));*/
         }
-        else {
+        /*else {
             alert("error_create");
-        }
+        }*/
     })
 };
 

@@ -31,10 +31,11 @@ export const FullScreenDialogButton = (props) => {
     return (
         <div>
             <div onClick={handleClickOpen} >
-                <GreenLargeButton text={"РЕГИСТРАЦИЯ И ВХОД ПАРТНЕРА"} />
+                <GreenLargeButton text={"ВХОД ПАРТНЕРА"} />
             </div>
             <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
                 <AppBar className={classes.appBar}>
+                    <div className={style.back}>
                     <div className={style.header}>
                         <div className={style.headerTitle}>Вход в личный кабинет партнера</div>
                         <div className={style.signIn}>
@@ -44,6 +45,7 @@ export const FullScreenDialogButton = (props) => {
                            {/* <GreenButton text={"ВОЙТИ"} />*/}
                             <CloseIcon style={{fontSize: 50}} className={style.closeButton} onClick={handleClose}/>
                         </div>
+                    </div>
                     </div>
                 </AppBar>
                 <ProviderRegistration />

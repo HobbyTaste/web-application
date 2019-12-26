@@ -17,6 +17,25 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const selectStyles = {
+    control: styles => ({ ...styles, backgroundColor: 'white' ,
+        width: '700px',
+        height: '70px',
+        fontSize: '24px'
+    }),
+
+    option: (styles, {isDisabled, isFocused, isSelected }) => {
+        return {
+            ...styles,
+            backgroundColor: isFocused ? 'rgba(189,255,52,0.49)' : isSelected ? '#85C633' : 'white',
+            cursor: 'pointer',
+            fontSize: '24px',
+            color: '#000',
+            borderColor: 'none'
+        };
+    },
+};
+
 export const Input = ({input, label, meta: {error}, ...custom}) => {
     const classes = useStyles();
     return (
@@ -60,15 +79,17 @@ export const Input = ({input, label, meta: {error}, ...custom}) => {
 };
 
 export const MySelect = (props) => {
-    const {input, options, label} = props;
+    const {input, options, placeholder} = props;
     return (
         <div className={s.searchContainer}>
-            <div className={s.title}>{label}</div>
+            {/*<div className={s.title}>{label}</div>*/}
             <Select
                 {...input}
                 onChange={value => input.onChange(value)}
                 onBlur={() => input.onBlur(input.value)}
                 options={options}
+                placeholder={placeholder}
+                styles={selectStyles}
             />
         </div>
     )

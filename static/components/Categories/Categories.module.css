@@ -1,0 +1,179 @@
+.background {
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.3)), url("https://kolobok.ua/i/81/72/70/817270/aae4f418dbcfc4c2f0fc8662010cf1dc-quality_70Xresize_crop_1Xallow_enlarge_0Xw_698Xh_465.jpg") no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.cardsBoard {
+    margin: 30px auto;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chooseHobby {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    margin: 24px auto;
+    font-size: 26px;
+    position: relative;
+    z-index: 20;
+    height: 50px;
+    border-radius: 10px;
+    width: 1000px;
+}
+
+.hobbyName {
+    font-size: 24px;
+    color: white;
+    text-align: center;
+}
+
+.card {
+    margin: 5px;
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    transition: 500ms;
+}
+
+.sport {
+    background: url("ball.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(209, 0, 4, 0.6);
+}
+
+.music {
+    background: url("music.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(0, 166, 185, 0.6);
+}
+
+.travel {
+    background: url("travel.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(25, 185, 93, 0.6);
+}
+
+.cook {
+    background: url("cook.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(235, 202, 0, 0.6);
+}
+
+.fish {
+    background: url("fish.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(0, 166, 185, 0.6);
+}
+
+.handmade {
+    background: url("handmade.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 40%;
+    background-color: rgba(185, 0, 157, 0.6);
+}
+
+.money {
+    background: url("money.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(0, 166, 185, 0.6);
+}
+
+.videogames {
+    background: url("videogames.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(235, 202, 0, 0.6);
+}
+
+.photo {
+    background: url("photo.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(209, 0, 4, 0.6);
+}
+
+.paint {
+    background: url("paint1.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 50%;
+    background-color: rgba(185, 0, 157, 0.6);
+}
+
+.garden {
+    background: url("garden.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(25, 185, 93, 0.6);
+}
+
+.flag {
+    background: url("flag.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(209, 0, 4, 0.6);
+}
+
+.flower {
+    background: url("flower.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(25, 185, 93, 0.6);
+}
+
+.dog {
+    background: url("dog.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(185, 0, 157, 0.6);
+}
+
+.cinema {
+    background: url("cinema.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(0, 166, 185, 0.6);
+}
+
+.auto {
+    background: url("auto.png");
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: 50% 50%;
+    background-color: rgba(209, 0, 4, 0.6);
+}
+
+.other {
+    background: url("other.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: rgba(235, 202, 0, 0.6);
+}
