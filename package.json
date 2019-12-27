@@ -89,6 +89,7 @@
     "babel-loader": "^8.0.5",
     "babel-minify-webpack-plugin": "^0.2.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "copy-webpack-plugin": "^5.1.1",
     "css-hot-loader": "^1.4.4",
     "css-loader": "^2.1.0",
     "eslint": "^6.6.0",
