@@ -22,8 +22,6 @@ function getHeader(): string {
   );
 }
 
-console.log(config.get('static'));
-
 function getBody(): string {
   return (
       `
