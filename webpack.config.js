@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+const config = require('config');
 
 module.exports = {
     entry: './static/index.js',
@@ -43,6 +43,6 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist/'),
         filename: 'main.js',
-        publicPath: "/dist/"
+        publicPath: `${config.get('static.baseUrl')}/`
     },
 };

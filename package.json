@@ -9,6 +9,7 @@
     "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
     "classnames": "^2.2.6",
+    "config": "^3.2.4",
     "connect-mongo": "^3.1.1",
     "cookie-parser": "^1.4.4",
     "crypto": "^1.0.1",
@@ -19,6 +20,7 @@
     "express-slash": "^2.0.1",
     "express-trailing-slash": "^1.0.0",
     "form-jsonizer": "^1.0.0",
+    "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
     "log4js": "^5.3.0",
     "mongoose": "^5.7.7",
@@ -44,11 +46,11 @@
   "scripts": {
     "start": "NODE_ENV=production node server/build/app.js",
     "start:watch": "NODE_ENV=development ts-node-dev --project server/tsconfig.json --clear --respawn --transpileOnly ./server/app.ts",
-    "build:front": "webpack --mode production",
+    "build:front": "NODE_ENV=production webpack --mode production",
     "build:front:watch": "webpack --watch --mode development",
-    "build:server": "tsc -p ./server",
+    "build:server": "NODE_ENV=production tsc -p ./server",
     "build": "webpack --mode production && tsc -p ./server",
-    "release": "sh tasks/release.sh"
+    "heroku-postbuild": "yarn build:server"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -70,6 +72,7 @@
     "@babel/preset-react": "^7.0.0",
     "@sullenor/eslint-config-partner": "^1.1.2",
     "@types/bcrypt": "^3.0.0",
+    "@types/config": "^0.0.36",
     "@types/connect-mongo": "^3.0.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/csurf": "^1.9.36",

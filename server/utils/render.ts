@@ -1,5 +1,6 @@
 import {Response, Request} from 'express';
 import {escapeRegExp} from 'lodash';
+import config from 'config';
 
 const TITLE: string = 'Hobby Taste';
 
@@ -14,6 +15,8 @@ function getHeader(): string {
             <meta name="viewport" content="width=375, initial-scale=1">
             <meta name="viewport" content="width=320, initial-scale=1">
             <title>${TITLE}</title>
+            
+            <script src="${config.get('static.baseUrl')}/main.js"></script>
         </head>
         `
   );
@@ -24,7 +27,6 @@ function getBody(): string {
       `
          <body>
             <div id="root"></div>
-            <script src="/dist/main.js"></script>
           </body>
         `
   );
