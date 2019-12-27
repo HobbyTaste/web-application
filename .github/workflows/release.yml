@@ -1,0 +1,31 @@
+name: release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Building app
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: building...
+        run: |
+          yarn
+          yarn build
+      - name: Deploy static
+        uses: jakejarvis/s3-sync-action@master
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_ENDPOINT: https://storage.yandexcloud.net
+          AWS_REGION: 'ru-central1'   # optional: defaults to us-east-1
+          SOURCE_DIR: 'dist'      # optional: defaults to entire repository
+          DEST_DIR: 'static'
