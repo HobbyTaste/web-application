@@ -2,6 +2,11 @@
   "name": "hobby_time",
   "version": "0.1.0",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "git secrets hide && git add *\.secret"
+    }
+  },
   "dependencies": {
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.5.1",
