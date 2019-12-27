@@ -1,4 +1,0 @@
-{
-  "port": "8100",
-  "dbHost": "mongodb+srv://sikalov:Nikita1998@hobbytaste-a3rpe.mongodb.net/test?retryWrites=true&w=majority"
-}
