@@ -44,11 +44,11 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
-    "start": "NODE_ENV=production node server/build/app.js",
-    "start:watch": "NODE_ENV=development ts-node-dev --project server/tsconfig.json --clear --respawn --transpileOnly ./server/app.ts",
+    "start": "NODE_APP_INSTANCE=secrets NODE_ENV=production node server/build/app.js",
+    "start:watch": "NODE_APP_INSTANCE=secrets NODE_ENV=development ts-node-dev --project server/tsconfig.json --clear --respawn --transpileOnly ./server/app.ts",
     "build:front": "NODE_ENV=production webpack --mode production",
     "build:front:watch": "webpack --watch --mode development",
-    "build:server": "NODE_ENV=production tsc -p ./server",
+    "build:server": "NODE_ENV=production tsc --project server/tsconfig.json",
     "build": "yarn build:front && yarn build:server",
     "heroku-postbuild": "yarn build:server"
   },

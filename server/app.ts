@@ -17,17 +17,11 @@ import userRouter from './routes/user';
 
 const app: express.Application = express();
 
-const secrets: any = {};
-try {
-    secrets.dbUser = require('../config/secrets.json').dbUser;
-    secrets.dbPassword = require('../config/secrets.json').dbPassword;
-} catch (e) {}
-
 const LISTENING_PORT = process.env.PORT || Number(config.get('port')) || 3000;
 const environment = process.env.NODE_ENV;
 const MongoStore = connectMongo(expressSession);
-const dbUser = process.env.DB_USER || secrets.dbUser;
-const dbPassword = process.env.DB_PASSWORD || secrets.dbPassword;
+const dbUser: string = process.env.DB_USER || config.has('secrets') &&  config.get('secrets.dbUser') || '';
+const dbPassword: string = process.env.DB_PASSWORD || config.has('secrets') && config.get('secrets.dbPassword') || '';
 let dbHost: string = config.get('dbHost');
 
 if (!dbUser || !dbPassword) {
@@ -35,10 +29,8 @@ if (!dbUser || !dbPassword) {
     process.exit(1);
 }
 
-try {
-    dbHost = dbHost.replace(/{dbUser}/, dbUser);
-    dbHost = dbHost.replace(/{dbPassword}/, dbPassword);
-} catch (e) {}
+dbHost = dbHost.replace(/{dbUser}/, dbUser);
+dbHost = dbHost.replace(/{dbPassword}/, dbPassword);
 
 app.use(express.json());
 app.use(morgan('dev'));
