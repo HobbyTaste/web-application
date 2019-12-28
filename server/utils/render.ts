@@ -1,19 +1,24 @@
 import {Response, Request} from 'express';
 import {escapeRegExp} from 'lodash';
+import config from 'config';
 
 const TITLE: string = 'Hobby Taste';
+
+const staticURL = config.get('static.baseUrl');
 
 function getHeader(): string {
   return (
       `
         <head>
             <meta charset="UTF-8">
-            <link href="/public/images/favicon.ico" rel="icon">
+            <link href="${staticURL}/favicon.ico" rel="icon">
             <meta name="viewport" content="width=768, initial-scale=1">
             <meta name="viewport" content="width=425, initial-scale=1">
             <meta name="viewport" content="width=375, initial-scale=1">
             <meta name="viewport" content="width=320, initial-scale=1">
             <title>${TITLE}</title>
+            
+            <script src="${staticURL}/main.js"></script>
         </head>
         `
   );
@@ -24,7 +29,6 @@ function getBody(): string {
       `
          <body>
             <div id="root"></div>
-            <script src="/dist/main.js"></script>
           </body>
         `
   );

@@ -5,9 +5,9 @@ import expressSession from 'express-session';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
 import csrf from 'csurf';
+import config from 'config';
 
 import logger from './utils/logger';
-import config from './config.json';
 
 import routes from './routes/routes.json';
 import indexRouter from './routes/index';
@@ -17,9 +17,20 @@ import userRouter from './routes/user';
 
 const app: express.Application = express();
 
-const LISTENING_PORT = process.env.PORT || Number(config.port) || 3000;
+const LISTENING_PORT = process.env.PORT || Number(config.get('port')) || 3000;
 const environment = process.env.NODE_ENV;
 const MongoStore = connectMongo(expressSession);
+const dbUser: string = process.env.DB_USER || config.has('secrets') &&  config.get('secrets.dbUser') || '';
+const dbPassword: string = process.env.DB_PASSWORD || config.has('secrets') && config.get('secrets.dbPassword') || '';
+let dbHost: string = config.get('dbHost');
+
+if (!dbUser || !dbPassword) {
+    logger.error("Secrets are not provided.");
+    process.exit(1);
+}
+
+dbHost = dbHost.replace(/{dbUser}/, dbUser);
+dbHost = dbHost.replace(/{dbPassword}/, dbPassword);
 
 app.use(express.json());
 app.use(morgan('dev'));
@@ -30,7 +41,7 @@ app.use(expressSession({
   resave: false,
   saveUninitialized: false,
   store: new MongoStore({
-    url: config.dbHost
+    url: dbHost
   })
 }));
 app.use(csrf());
@@ -62,7 +73,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 });
 
 // MongoDB
-mongoose.connect(config.dbHost, {
+mongoose.connect(dbHost, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(

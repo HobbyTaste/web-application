@@ -1,5 +1,8 @@
 const path = require('path');
-const webpack = require('webpack');
+const config = require('config');
+const CopyPlugin = require('copy-webpack-plugin');
+
+const DESTINATION_DIR = 'dist';
 
 module.exports = {
     entry: './static/index.js',
@@ -41,8 +44,13 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
     },
     output: {
-        path: path.resolve(__dirname, './dist/'),
+        path: path.join(__dirname, DESTINATION_DIR),
         filename: 'main.js',
-        publicPath: "/dist/"
+        publicPath: `${config.get('static.baseUrl')}/`
     },
+    plugins: [
+        new CopyPlugin([{
+            from: 'public/images/favicon.ico',
+        }])
+    ]
 };
