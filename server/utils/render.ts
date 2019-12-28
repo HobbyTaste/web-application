@@ -12,12 +12,7 @@ function getHeader(): string {
         <head>
             <meta charset="UTF-8">
             <link href="${staticURL}/favicon.ico" rel="icon">
-            <meta name="viewport" content="width=768, initial-scale=1">
-            <meta name="viewport" content="width=425, initial-scale=1">
-            <meta name="viewport" content="width=375, initial-scale=1">
-            <meta name="viewport" content="width=320, initial-scale=1">
             <title>${TITLE}</title>
-            
             <script src="${staticURL}/main.js"></script>
         </head>
         `
