@@ -31,6 +31,7 @@ const RegistrationReduxForm = reduxForm({ form: 'registration' })(RegistrationFo
 const Registration = (props) => {
 
     const onSubmit = (formData) => {
+        /*debugger;*/
         props.createNewUser(formData.email, formData.password, formData.name);
     };
 

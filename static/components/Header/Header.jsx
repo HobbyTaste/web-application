@@ -8,7 +8,11 @@ import {Link} from 'react-router-dom';
 const Header = (props) => {
     return (
         <header className={s.header}>
-            <div className={s.logoContainer}><Logo /></div>
+            <div className={s.logoContainer}>
+                <Link to='/' style={{ textDecoration: 'none' }}>
+                <Logo />
+                </Link>
+            </div>
             { props.isAuth
                 ? <div className={s.tmp}><LogoutUser logout={props.logout} inUserCabinet={props.inUserCabinet}
                                                      setInCabinet={props.setInCabinet} setOutCabinet={props.setOutCabinet}/></div>

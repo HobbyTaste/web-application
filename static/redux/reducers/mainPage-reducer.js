@@ -1,4 +1,6 @@
 import {getMetroStations} from "../../api/Geo";
+import {getAuthUserData} from "./auth-reducer";
+import {initializedSuccess} from "./app-reducer";
 
 /*const INSTALL_HOBBY = 'SELECT-HOBBY';
 const INSTALL_METRO = 'SELECT-METRO';*/
@@ -6,6 +8,7 @@ const SET_HOBBIES = 'SET-HOBBIES';
 const SET_METRO_STATIONS = 'SET-METRO-STATIONS';
 const SET_STATIONS_TO_SELECT = 'SET-STATIONS-TO-SELECT';
 const SUBMIT = 'SUBMIT';
+const INITIALIZED_MAIN_PAGE_SUCCESS = 'INITIALIZED_MAIN_PAGE_SUCCESS';
 
 let initialState = {
     hobbies: [
@@ -13,7 +16,8 @@ let initialState = {
     ],
     metroStations: [],
     metroStationsToSelect: [],
-    isSubmit: false
+    isSubmit: false,
+    initializedMainPage: false
     /*selectedHobby: '',
     selectedMetroStation: ''*/
 };
@@ -45,6 +49,10 @@ const mainPageReducer = (state = initialState, action) => {
             return {
                 ...state, isSubmit: true
             };
+        case INITIALIZED_MAIN_PAGE_SUCCESS:
+            return {
+                ...state, initializedMainPage: true
+            };
         default:
             return state;
     }
@@ -66,6 +74,7 @@ export const installMetroAC = (metro) => ({type: INSTALL_METRO, metro});*/
 export const setMetroStations = (stations) => ({ type: SET_METRO_STATIONS, stations});
 export const setStationsToSelect = (stationsToSelect) => ({ type: SET_STATIONS_TO_SELECT, stationsToSelect});
 export const setSubmit = () => ({type: SUBMIT});
+export const initializedMainPageSuccess = () => ({type: INITIALIZED_MAIN_PAGE_SUCCESS});
     export default mainPageReducer;
 
 export const getMetro = () => (dispatch) => {
@@ -83,4 +92,12 @@ export const getMetro = () => (dispatch) => {
             /*let {id, caption, line} = response;*/
                 // dispatch(setMetroStations(metroStations));
         })
+};
+
+export const initializeMainPage = () => (dispatch) => {
+    let promise = dispatch(getMetro());
+    Promise.all([promise])
+        .then(() => {
+            dispatch(initializedMainPageSuccess());
+        });
 };

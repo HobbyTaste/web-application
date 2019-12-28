@@ -2,20 +2,26 @@
     margin: 70px auto;
     width: 700px;
     height: 100px;
-    background-color: whitesmoke;
+    /*background-color: whitesmoke;*/
     padding: 10px;
     display: flex;
     flex-direction: column;
+    border-radius: 5px;
 }
 
 .title {
+    color: white;
     font-style: normal;
     font-size: 20px;
     text-align: center;
-    margin: 10px auto;
+    margin: 40px auto;
 }
 
 /*
 .hobbySelect {
     height: 50px;
 }*/
+
+.mySelect {
+    border-radius: 20px;
+}

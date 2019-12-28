@@ -13,10 +13,10 @@ let SelectForm = ({handleSubmit, hobbies, metroStations}) => {
         <form onSubmit={handleSubmit}>
             <div>
                 <div>
-                    <Field name="hobby" component={MySelect} options={hobbies} label={"Введите хобби"}/>
+                    <Field name="hobby" component={MySelect} options={hobbies} placeholder={"Введите хобби"}/>
                 </div>
                 <div>
-                    <Field name="metro" component={MySelect} options={metroStations} label={"Введите станцию метро"}/>
+                    <Field name="metro" component={MySelect} options={metroStations} placeholder={"Введите станцию метро"}/>
                 </div>
             </div>
                 <div className={style.SearchHobbyButton}>
