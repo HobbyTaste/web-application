@@ -61,6 +61,21 @@ userRouter.post('/create', async (req: Request, res: Response) => {
     }
 });
 
+userRouter.post('/edit', async (req: Request, res: Response) => {
+    const {...nextParams} = req.body;
+    if (!req.session || !req.session.user) {
+        res.status(403).send('Пользователь не авторизован');
+        return;
+    }
+    const {_id: id} = req.session.user;
+    try {
+        await User.findByIdAndUpdate(id, nextParams);
+        res.end();
+    } catch (e) {
+        res.status(500).send(e);
+    }
+});
+
 userRouter.get('/logout', (req: Request, res: Response) => {
     if (req.session) {
         req.session.user = null;

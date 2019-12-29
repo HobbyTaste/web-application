@@ -70,6 +70,7 @@ class Hobby extends BaseFetchClass{
      * @param updatedProperties - параметры обновления
      */
     public async edit(id: string, updatedProperties: Partial<IHobby>): Promise<Response> {
+        // @ts-ignore
         const response = await this.post('/edit', updatedProperties);
         if (!response.ok) {
             console.error(response);

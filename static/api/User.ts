@@ -99,6 +99,13 @@ class User extends BaseFetchClass {
         formData.append('file', file);
         return this.post('upload', formData, {isFormData: true});
     }
+
+    /**
+     * Меняет дланные для залогиненного пользователя
+     */
+    public async edit(nextData: IUser): Promise<Response> {
+        return this.post('/edit', nextData);
+    }
 }
 
 export default User;

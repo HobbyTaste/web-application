@@ -26,7 +26,7 @@ const ProviderSchema: Schema = new Schema({
         required: true,
     },
     phone: {
-        type: string,
+        type: String,
         required: true,
         trim: true,
         unique: true,

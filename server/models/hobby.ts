@@ -1,8 +1,9 @@
 import {Schema, connection as db, Document, Model} from 'mongoose';
 import {escapeRegExp} from 'lodash';
+
 const EMAIL_REG_EXP = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/;
 
-export interface IHobby {
+export interface IHobby extends Document {
     label: string,
     phone?: string,
     email?: string,
@@ -11,9 +12,10 @@ export interface IHobby {
     metroId?: string,
     description: string,
     shortDescription: string,
+    owner: string,
+    subscribers: string[],
+    imagesUrl: string,
 }
-
-interface IHobbyDocument extends Document {}
 
 const HobbySchema: Schema = new Schema({
     label: {
@@ -24,7 +26,7 @@ const HobbySchema: Schema = new Schema({
     phone: {
         type: String,
         trim: true,
-        match: [/^\+7\d{10}$/, 'Неверный формат номера телефона']
+        match: [/^\+\d{11}$/, 'Неверный формат номера телефона']
     },
     email: {
         type: String,
@@ -41,7 +43,7 @@ const HobbySchema: Schema = new Schema({
         trim: true,
     },
     metroId: {
-      type: Number,
+        type: Number,
     },
     description: {
         type: String,
@@ -49,15 +51,24 @@ const HobbySchema: Schema = new Schema({
     shortDescription: {
         type: String,
         maxlength: [500, 'toLongDescription'],
-        minlength: [10, 'toShortDescription'],
-    }
+    },
+    imageUrl: {
+        type: String,
+    },
+    owner: {
+        type: String
+    },
+    subscribers: {
+        type: Array,
+        default: []
+    },
 });
 
 /**
  * Поиск хобби по названию в БД
  * @param label
  */
-HobbySchema.statics.findByLabel = function(label: string): Promise<IHobbyDocument> {
+HobbySchema.statics.findByLabel = function(label: string): Promise<IHobby> {
     return this.find({label: new RegExp(escapeRegExp(label), 'i')});
 };
 
@@ -67,17 +78,19 @@ HobbySchema.statics.findByLabel = function(label: string): Promise<IHobbyDocumen
  * @param label
  * @param metroId
  */
-HobbySchema.statics.findByLabelWithGeo = function(label: string, metroId: number): Promise<IHobbyDocument> {
+HobbySchema.statics.findByLabelWithGeo = function(label: string, metroId: number): Promise<IHobby> {
     return this.find({
         label: new RegExp(escapeRegExp(label), 'i'),
         metroId: metroId,
-    })
+    });
 };
 
-interface IHobbyModel extends Model<IHobbyDocument> {
-    findByLabel: (label: string) => Promise<IHobbyDocument[]>,
-    findByLabelWithGeo: (label: string, metroId: number) => Promise<IHobbyDocument>
+interface IHobbyModel extends Model<IHobby> {
+    findByLabel: (label: string) => Promise<IHobby[]>,
+    findByLabelWithGeo: (label: string, metroId: number) => Promise<IHobby>
 }
+const obj: any = {};
+const {}: IHobbyModel = obj;
 
-const Hobby: IHobbyModel = db.model<IHobbyDocument, IHobbyModel>('Hobby', HobbySchema);
+const Hobby: IHobbyModel = db.model<IHobby, IHobbyModel>('Hobby', HobbySchema);
 export default Hobby;
