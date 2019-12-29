@@ -5,7 +5,9 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.5.1",
+    "@types/express-fileupload": "^1.1.0",
     "@types/express-session": "^1.15.15",
+    "aws-sdk": "^2.596.0",
     "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
     "classnames": "^2.2.6",
@@ -16,6 +18,7 @@
     "csurf": "^1.10.0",
     "express": "^4.17.1",
     "express-error-handler": "^1.1.0",
+    "express-fileupload": "^1.1.6",
     "express-session": "^1.17.0",
     "express-slash": "^2.0.1",
     "express-trailing-slash": "^1.0.0",
@@ -41,7 +44,8 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "ts-mongoose": "^0.0.21",
-    "typescript": "^3.6.4"
+    "typescript": "^3.6.4",
+    "uuid": "^3.3.3"
   },
   "scripts": {
     "start": "NODE_APP_INSTANCE=secrets NODE_ENV=production node server/build/app.js",
@@ -71,6 +75,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@sullenor/eslint-config-partner": "^1.1.2",
+    "@types/aws-sdk": "^2.7.0",
     "@types/bcrypt": "^3.0.0",
     "@types/config": "^0.0.36",
     "@types/connect-mongo": "^3.0.0",
@@ -81,6 +86,7 @@
     "@types/log4js": "^2.3.5",
     "@types/mongoose": "^5.5.23",
     "@types/morgan": "^1.7.37",
+    "@types/uuid": "^3.4.6",
     "@typescript-eslint/eslint-plugin": "^2.6.0",
     "@typescript-eslint/parser": "^2.6.0",
     "antd": "^3.13.6",

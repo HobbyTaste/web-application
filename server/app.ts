@@ -6,6 +6,7 @@ import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
 import csrf from 'csurf';
 import config from 'config';
+import fileUpload from 'express-fileupload';
 
 import logger from './utils/logger';
 
@@ -36,6 +37,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+app.use(fileUpload());
 app.use(expressSession({
   secret: 'pugs do drugs',
   resave: false,

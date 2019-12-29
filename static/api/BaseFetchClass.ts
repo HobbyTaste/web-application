@@ -3,6 +3,7 @@ import {merge} from 'lodash';
 
 interface IRequestOpts extends RequestInit {
     retryOnUnauthorized: boolean;
+    isFormData: boolean;
 }
 
 enum METHODS {
@@ -28,11 +29,11 @@ export default class BaseFetchClass {
     private static defaultOpts: IRequestOpts = {
         credentials: 'same-origin',
         headers: {
-            Accept: 'application/json',
             'Content-Type': 'application/json',
         },
         method: METHODS.GET,
         retryOnUnauthorized: true,
+        isFormData: false,
     };
 
     private static computeOpts(customOpts?: Partial<IRequestOpts>): IRequestOpts {
@@ -41,6 +42,9 @@ export default class BaseFetchClass {
             ? {headers: {'csrf-token': authToken}}
             : {};
         const opts = customOpts ? merge({}, BaseFetchClass.defaultOpts, customOpts) : BaseFetchClass.defaultOpts;
+        if (opts.isFormData) {
+            delete opts.headers!['Content-Type'];
+        }
 
         return merge({}, opts, authorization);
 
@@ -79,7 +83,10 @@ export default class BaseFetchClass {
 
     public async post(path: string, body: Object, customOpts: Partial<IRequestOpts> = {}): Promise<Response> {
         const requestUrl = path.replace(/\/$/, '');
-        const opts = merge({}, customOpts, {body: JSON.stringify(body), method: METHODS.POST})
+        const bodyToFetch = customOpts.isFormData
+            ? body
+            : JSON.stringify(body);
+        const opts = merge({}, customOpts, {body: bodyToFetch, method: METHODS.POST})
         return this.baseFetch(requestUrl, opts);
     }
 }
