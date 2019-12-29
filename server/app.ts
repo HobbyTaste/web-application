@@ -38,6 +38,7 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(fileUpload());
+
 app.use(expressSession({
   secret: 'pugs do drugs',
   resave: false,
@@ -64,7 +65,6 @@ app.use(routes.provider, providerRouter);
 app.use(routes.user, userRouter);
 
 // error middleware
-
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     if (err.code === 'EBADCSRFTOKEN') {
         res.setHeader('csrf-token', req.csrfToken());
@@ -75,14 +75,11 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 });
 
 // MongoDB
-mongoose.connect(dbHost, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(
-        () => {
-          logger.info(`Connect to mongoDB: success`);
-        },
-        (err: string) => {
-          logger.error(`MongoDB error: ${err}`);
-        }
-    );
+try {
+    mongoose.connect(dbHost, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+        .then(() => logger.info(`Connect to mongoDB: success`))
+        .catch(logger.error);
+} catch (e) {}

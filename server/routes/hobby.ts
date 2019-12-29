@@ -1,29 +1,9 @@
 import {Router, Request, Response} from 'express';
 import {isNil} from 'lodash';
-import {renderPage} from '../utils/render';
 
 import Hobby, {IHobby} from '../models/hobby';
 
-const hobbyRouter: Router = Router({
-    strict: true,
-});
-
-/**
- * Страничка поиска хобби с результатами
- */
-hobbyRouter.get(...renderPage('search'));
-
-/**
- * Редирект на страничку с поиском хобби
- */
-hobbyRouter.get('/', (req: Request, res: Response) => {
-  res.redirect('search');
-});
-
-/**
- * Страничка с формой создания нового хобби
- */
-hobbyRouter.get(...renderPage('new'));
+const hobbyRouter: Router = Router();
 
 /**
  * Добавление нового хобби в БД

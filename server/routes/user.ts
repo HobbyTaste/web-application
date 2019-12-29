@@ -1,23 +1,14 @@
 import {Response, Request, Router} from 'express';
 
-import {renderPage} from '../utils/render';
 import User from '../models/user';
 import {user as BASE_URL} from './routes.json';
 import {uploadFileToS3} from '../utils/aws';
 
-const userRouter: Router = Router({
-    strict: true,
-});
+const userRouter: Router = Router();
 
 const USER_URL_PAGES = {
     cabinet: `${BASE_URL}/cabinet`
 };
-
-userRouter.get(/^\/?$/, (req: Request, res: Response) => {
-  res.redirect(USER_URL_PAGES.cabinet);
-});
-
-userRouter.get(...renderPage('cabinet'));
 
 userRouter.post('/login', async (req: Request, res: Response) => {
   if (req.session && req.session.user) {
@@ -123,7 +114,6 @@ userRouter.post('/upload', async (req: Request, res: Response) => {
     } catch (e) {
         res.status(500).send(e);
     }
-
 });
 
 export default userRouter;
