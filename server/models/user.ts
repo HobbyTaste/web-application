@@ -6,9 +6,10 @@ const EMAIL_REG_EXP = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\
 const SALT_WORK_FACTOR = 10;
 
 export interface IUser extends Document {
-  name: string,
-  password: string,
-  email: string,
+    name: string;
+    password: string;
+    email: string;
+    avatar: string;
 }
 
 interface IUserModel extends IUser {
@@ -29,6 +30,9 @@ const UserSchema: Schema = new Schema({
     password: {
       type: String,
       required: true,
+    },
+    avatar: {
+        type: String,
     }
 });
 

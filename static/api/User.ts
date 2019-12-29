@@ -88,6 +88,17 @@ class User extends BaseFetchClass {
         }
         return response.statusText;
     }
+
+    /**
+     * Загружает фото пользователя. Рабтает ТОЛЬКО длч залогиненных пользователей
+     * В случае успех объект ответа будет сожержать ссылку на фото пользователя
+     * @param file
+     */
+    public async uploadAvatar(file: File): Promise<Response> {
+        const formData = new FormData();
+        formData.append('file', file);
+        return this.post('upload', formData, {isFormData: true});
+    }
 }
 
 export default User;

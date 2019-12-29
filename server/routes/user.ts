@@ -1,7 +1,9 @@
 import {Response, Request, Router} from 'express';
+
 import {renderPage} from '../utils/render';
 import User from '../models/user';
 import {user as BASE_URL} from './routes.json';
+import {uploadFileToS3} from '../utils/aws';
 
 const userRouter: Router = Router({
     strict: true,
@@ -87,16 +89,41 @@ userRouter.get('/info', async (req: Request, res: Response) => {
             res.status(404).send('Не найден такой пользователь');
             return;
         }
-        const {_id: id, name: name, email: email} = user;
-        res.json({id, name, email});
+        const {_id: id, name, email, avatar} = user;
+        res.json({id, name, email, avatar});
         return;
     }
     if (req.session && req.session.user) {
-        const {_id: id, name: name, email: email} = req.session.user;
-        res.json({id, name, email});
+        const {_id: id, name, email, avatar} = req.session.user;
+        res.json({id, name, email, avatar});
         return;
     }
     res.status(403).send('Текущий пользователь не прошел авторизацию');
+});
+
+userRouter.post('/upload', async (req: Request, res: Response) => {
+    if (!req.session || !req.session.user) {
+        res.status(403).send('Текущий пользователь не прошел авторизацию');
+        return;
+    }
+    if (!req.files || !req.files.file || Array.isArray(req.files.file)) {
+        res.status(400);
+        return;
+    }
+    const file = req.files.file;
+    if (!file.mimetype.match(/images/)) {
+        res.status(400).send('Неверный формат изображения');
+        return;
+    }
+    const {_id: userId} = req.session.user;
+    try {
+        const url = await uploadFileToS3('users/data', req.files.file);
+        await User.findByIdAndUpdate(userId, {avatar: url});
+        res.json({url});
+    } catch (e) {
+        res.status(500).send(e);
+    }
+
 });
 
 export default userRouter;
