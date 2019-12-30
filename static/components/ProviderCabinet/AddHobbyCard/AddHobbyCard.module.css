@@ -1,11 +1,19 @@
 .card {
-    width: 600px;
-    margin: 0 auto;
-    padding: 10px;
+    width: 500px;
+    margin: 10px auto;
+    padding: 15px;
     text-align: left;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 1px rgba(18, 128, 64, 0.54);
 }
+
+.card:hover {
+    box-shadow: 0 0 10px 3px rgba(18, 128, 64, 1);
+}
+
 .hobbyName {
-    background-color: #85C633;
+    background-color: #19B95D;
     color: white;
     width: 100%;
     height: 40px;
@@ -14,7 +22,7 @@
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    margin-top: 15px;
+    margin-top: 5px;
 }
 .hobbyInfo {
     margin-top: 10px;
@@ -37,7 +45,7 @@
 
 .hobbyImage {
     margin-top: 10px;
-    width: 600px;
+    width: 500px;
 }
 
 .buttonsContainer {
@@ -46,6 +54,7 @@
 }
 
 .hobbyTextInfo {
+    width: 450px;
     margin-left: 20px;
     margin-bottom: 15px;
 }
