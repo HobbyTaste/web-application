@@ -8,7 +8,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Slide from '@material-ui/core/Slide';
 import { makeStyles } from '@material-ui/core/styles';
 import AddHobbyFormContainer from "../AddHobbyFormContainer";
-import CloseIcon from '@material-ui/icons/Close';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -40,11 +40,13 @@ export const DialogAddHobbyForm = (props) => {
             <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
                 <AppBar className={classes.appBar}>
                     <div className={style.header}>
+                        <ArrowBackIosIcon style={{fontSize: 40}} className={style.closeButton} onClick={handleClose}/>
                         <div className={style.headerTitle}>Новое хобби</div>
-                        <CloseIcon style={{fontSize: 50}} className={style.closeButton} onClick={handleClose}/>
                     </div>
                 </AppBar>
-                <AddHobbyFormContainer />
+                <div className={style.backImage}>
+                        <AddHobbyFormContainer />
+                </div>
             </Dialog>
         </div>
     );

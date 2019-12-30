@@ -23,10 +23,10 @@ class App extends React.Component {
             return (
                     <div className="app-wrapper">
                         <HeaderContainer/>
-                        <Navbar />
+                        {/*<Navbar />*/}
                         <div className="app-wrapper-content">
                             <Route exact path="/" render={() => <Categories />}/>
-                            <Route exact path="/main_page" render={() => <MainPage/>}/>
+                            <Route exact path="/main/page" render={() => <MainPage/>}/>
                             <Route exact path="/hobbies" render={() => <Hobbies/>}/>
                             <Route exact path="/user_cabinet" render={() => <UserCabinetContainer/>}/>
                             <Route exact path="/provider_cabinet" render={() => <ProviderCabinet/>}/>

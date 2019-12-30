@@ -46,10 +46,11 @@ export const AddHobbyForm = (props) => {
         <div>
             <div className={style.pageContent}>
                 <div className={style.formContainer}>
-                    <h1>Заполните небольшую форму о вашем хобби</h1>
+                    <div className={style.hobbyFormContainer}>
+                    <h1>Заполните форму о вашем хобби</h1>
                     <form action="#" className={style.form}>
                         <Input name='organization' onChange={onOrganizationChange} value={props.organization}
-                               placeholder={"Название организации"}/>
+                               placeholder={"Название организации"} autoFocus={true}/>
                         <Input name='telephone' onChange={onTelChange} value={props.telephone} placeholder={"Телефон *"} type="telephone"/>
                         <Input name='email' onChange={onEmailChange} value={props.email} placeholder={"Email *"} type="email"/>
                         <Input name='site' onChange={onSiteChange} value={props.site} placeholder={"Сайт *"}/>
@@ -62,6 +63,7 @@ export const AddHobbyForm = (props) => {
                     </label>
                     <input type="file" name="file" id="file" onChange={uploadImage} className={style.input}/>
                     <div>Загрузить фото</div>
+                        </div>
                 </div>
                 <div className={style.formContainer}>
                     <AddHobbyCardContainer />
