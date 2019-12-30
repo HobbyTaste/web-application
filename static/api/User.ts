@@ -11,6 +11,7 @@ interface IUser {
     id: string;
     name: string;
     email: string;
+    avatar: any;
 }
 
 /**
@@ -103,8 +104,12 @@ class User extends BaseFetchClass {
     /**
      * Меняет дланные для залогиненного пользователя
      */
-    public async edit(nextData: IUser): Promise<Response> {
-        return this.post('/edit', nextData);
+    public async edit(nextData: Partial<IUser>): Promise<Response> {
+        const formData = new FormData();
+        for (const key in nextData) {
+            formData.append(key, nextData[key]);
+        }
+        return this.post('/edit', formData, {isFormData: true});
     }
 }
 

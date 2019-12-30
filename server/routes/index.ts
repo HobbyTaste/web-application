@@ -12,7 +12,7 @@ const pagesToRender = [
     'hobbies',
 ];
 
-indexRouter.get(...renderPage(''));
+pagesToRender.forEach(path => indexRouter.get(...renderPage(path)));
 
 export default indexRouter;
 

@@ -1,4 +1,6 @@
 import {Response, Request, Router} from 'express';
+import multer from 'multer';
+import config from 'config';
 
 import User from '../models/user';
 import {user as BASE_URL} from './routes.json';
@@ -9,6 +11,8 @@ const userRouter: Router = Router();
 const USER_URL_PAGES = {
     cabinet: `${BASE_URL}/cabinet`
 };
+
+const upload = multer({limits: {fieldSize: Number(config.get('aws.maxFileSize'))}});
 
 userRouter.post('/login', async (req: Request, res: Response) => {
   if (req.session && req.session.user) {
@@ -38,18 +42,23 @@ userRouter.post('/login', async (req: Request, res: Response) => {
   })
 });
 
-userRouter.post('/create', async (req: Request, res: Response) => {
-    const {email, password, name} = req.body;
-    const user = await User.findOne({email});
+userRouter.post('/create', upload.single('avatar'), async (req: Request, res: Response) => {
+    const {...profile} = req.body;
+    const file = req.file;
+    if (!profile.email) {
+        res.status(400).send('Email обязателен для регистрации');
+        return;
+    }
+    const user = await User.findOne({email: profile.email});
     if (user) {
         res.status(400).send('Такой пользователь уже существует');
         return;
     }
-    const newUser = new User({
-        email,
-        password,
-        name,
-    });
+
+    if (file) {
+        profile.avatar = uploadFileToS3('users', file);
+    }
+    const newUser = new User({...profile});
     if (req.session) {
         req.session.user = newUser;
     }
@@ -61,19 +70,25 @@ userRouter.post('/create', async (req: Request, res: Response) => {
     }
 });
 
-userRouter.post('/edit', async (req: Request, res: Response) => {
-    const {...nextParams} = req.body;
+userRouter.post('/edit', upload.single('avatar'), async (req: Request, res: Response) => {
+    const {...nextData} = req.body;
+    const file = req.file;
+    if (file) {
+        nextData.avatar = await uploadFileToS3('users', file);
+    }
+    console.log(file);
     if (!req.session || !req.session.user) {
         res.status(403).send('Пользователь не авторизован');
         return;
     }
     const {_id: id} = req.session.user;
     try {
-        await User.findByIdAndUpdate(id, nextParams);
+        req.session.user = await User.findByIdAndUpdate(id, nextData, {new: true});
         res.end();
     } catch (e) {
         res.status(500).send(e);
     }
+    res.end();
 });
 
 userRouter.get('/logout', (req: Request, res: Response) => {
@@ -107,25 +122,25 @@ userRouter.get('/info', async (req: Request, res: Response) => {
     res.status(403).send('Текущий пользователь не прошел авторизацию');
 });
 
-userRouter.post('/upload', async (req: Request, res: Response) => {
+userRouter.post('/upload', upload.single('avatar'), async (req: Request, res: Response) => {
     if (!req.session || !req.session.user) {
         res.status(403).send('Текущий пользователь не прошел авторизацию');
         return;
     }
-    if (!req.files || !req.files.file || Array.isArray(req.files.file)) {
+    if (!req.file) {
         res.status(400);
         return;
     }
-    const file = req.files.file;
+    const file = req.file;
     if (!file.mimetype.match(/images/)) {
         res.status(400).send('Неверный формат изображения');
         return;
     }
     const {_id: userId} = req.session.user;
     try {
-        const url = await uploadFileToS3('users/data', req.files.file);
-        await User.findByIdAndUpdate(userId, {avatar: url});
-        res.json({url});
+        const url = await uploadFileToS3('users', req.file);
+        req.session.user = await User.findByIdAndUpdate(userId, {avatar: url}, {new: true});
+        res.json({avatar: url});
     } catch (e) {
         res.status(500).send(e);
     }

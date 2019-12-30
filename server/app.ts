@@ -37,7 +37,9 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+/*
 app.use(fileUpload());
+*/
 
 app.use(expressSession({
   secret: 'pugs do drugs',
@@ -71,7 +73,8 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
         res.status(401).end();
         return;
     }
-    res.status(404).end();
+    logger.error(err);
+    res.status(500).send(err);
 });
 
 // MongoDB

@@ -7,4 +7,4 @@ aws:
   endpoint: https://storage.yandexcloud.net
   bucket: hobby-taste
   # максимальный размер файла в Мб который можно загрузть в облака
-  maxFileSize: 5
+  maxFileSize: 1048576

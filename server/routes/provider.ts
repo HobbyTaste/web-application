@@ -1,30 +1,29 @@
 import {Response, Request, Router} from 'express';
 import Provider, {IProvider} from "../models/provider";
+import multer from "multer";
+import config from "config";
+import {uploadFileToS3} from "../utils/aws";
 
 const providerRouter: Router = Router();
 
-providerRouter.post('/create', async (req: Request, res: Response) => {
-    const {
-        name,
-        email,
-        password,
-        avatar,
-        phone,
-        info
-    }: IProvider = req.body;
-    const provider = await Provider.findOne({email});
+const upload = multer({limits: {fieldSize: Number(config.get('aws.maxFileSize'))}});
+
+providerRouter.post('/create', upload.single('avatar'), async (req: Request, res: Response) => {
+    const {...profile}: IProvider = req.body;
+    if (!profile.email) {
+        res.status(400).send('Email обязателен');
+        return;
+    }
+    const provider = await Provider.findOne({email: profile.email});
     if (provider) {
         res.status(400).send('Такой пользователь уже существует');
         return;
     }
-    const newProvider = new Provider({
-        email,
-        password,
-        name,
-        avatar,
-        phone,
-        info
-    });
+    const file = req.file;
+    if (file) {
+        profile.avatar = await uploadFileToS3('provider', file);
+    }
+    const newProvider = new Provider({...profile});
     if (req.session) {
         req.session.provider = newProvider;
     }
@@ -88,7 +87,28 @@ providerRouter.get('/info', async (req: Request, res: Response) => {
         res.json({id, ...restProperties});
         return;
     }
-    res.status(403).send('Текущий пользователь не прошел авторизацию');
+    res.status(403).send('Текущий партнер не прошел авторизацию');
 });
+
+providerRouter.post('/edit', upload.single('avatar'), async (req: Request, res: Response) => {
+    const {...nextData} = req.body;
+    const file = req.file;
+    if (file) {
+        nextData.avatar = await uploadFileToS3('partner', file);
+    }
+    if (!req.session || !req.session.provider) {
+        res.status(403).send('Партнер не авторизован');
+        return;
+    }
+    const {_id: id} = req.session.partner;
+    try {
+        req.session.provider = await Provider.findByIdAndUpdate(id, nextData, {new: true});
+        res.end();
+    } catch (e) {
+        res.status(500).send(e);
+    }
+    res.end();
+});
+
 
 export default providerRouter;
