@@ -33,21 +33,27 @@ dbHost = dbHost.replace(/{dbUser}/, dbUser);
 dbHost = dbHost.replace(/{dbPassword}/, dbPassword);
 
 app.use(express.json());
-app.use(morgan('dev'));
+if (process.env.NODE_ENV !== 'test') {
+    app.use(morgan('dev'));
+}
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 /*
 app.use(fileUpload());
 */
 
+// for testing
+export let store = new MongoStore({
+  url: dbHost
+})
+
 app.use(expressSession({
   secret: 'pugs do drugs',
   resave: false,
   saveUninitialized: false,
-  store: new MongoStore({
-    url: dbHost
-  })
+  store: store
 }));
+
 app.use(csrf());
 
 app.use('/dist', express.static('dist', {
@@ -58,6 +64,14 @@ app.use('/public/images', express.static('images'));
 app.listen(LISTENING_PORT, () => {
   logger.info(`Server start listening on PORT: ${LISTENING_PORT}, http://localhost:${LISTENING_PORT}`);
 });
+
+// Suppress logs to keep test framework output clear
+if (process.env.NODE_ENV === 'test') {
+  console.log = () => {};
+  console.warn = () => {};
+  console.info = () => {};
+  console.error = () => {};
+}
 
 // routes
 app.use(routes.index, indexRouter);
@@ -82,6 +96,12 @@ try {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
-        .then(() => logger.info(`Connect to mongoDB: success`))
+        .then(() => {
+            if (process.env.NODE_ENV !== 'test')
+                logger.info(`Connect to mongoDB: success`)
+        })
         .catch(logger.error);
 } catch (e) {}
+
+// for testing
+export default app;

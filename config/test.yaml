@@ -1,0 +1,5 @@
+secrets:
+    dbUser: alexicon
+    dbPassword: JSTV7xbvtxysrgQ
+
+dbHost: mongodb+srv://{dbUser}:{dbPassword}@cluster0-c9g3i.mongodb.net/test?retryWrites=true&w=majority
