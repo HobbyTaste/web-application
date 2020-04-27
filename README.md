@@ -3,12 +3,8 @@
 
 ## Содержание
 1. [Настройка окружения и установка необходмых пакетов для разработки (Linux, MacOS)](#settings-env)
-2. [Разработка](#dev-rules)
-3. [Запуск docker-контейнера](#docker)
-4. [Архитектура backend](#backend) 
-5. [Frontend](#frontend)
-6. [Локальный запуск на виртуалке](#vagrant)
-
+2. [Локальная разраборка](#dev-rules)
+3. [Frontend](#frontend)
 
 <a name="settings-env"></a>
 
