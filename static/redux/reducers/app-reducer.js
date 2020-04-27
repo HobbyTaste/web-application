@@ -1,6 +1,6 @@
-import {getAuthUserData, setIsUserInCabinet} from "./auth-reducer";
+import {getAuthUserData, setIsUserInCabinet} from "../actions/userActions";
 import {getMetro} from "./mainPage-reducer";
-import {getAuthProviderData} from "./provider-reducer";
+import {getAuthProviderData} from "../actions/providerActions";
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 

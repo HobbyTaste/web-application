@@ -1,75 +1,105 @@
-import Hobby from "../../api/Hobby";
-import {setIsUserInCabinet} from "./auth-reducer";
+import * as actionTypes from '../actions/actionsTypes';
+import photo from '../../components/HobbyCard/Image/photo.png';
 
-
-const SET_HOBBY_CARDS = 'SET-HOBBY-CARDS';
-const INITIALIZE_HOBBIES = 'INITIALIZE_HOBBIES';
-const TOGGLE_IS_ADDING_PROGRESS = 'TOGGLE_IS_ADDING_PROGRESS';
-const TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING';
-
-const hobbyApi = new Hobby();
 
 let initialState = {
-    hobbyCards: [],
-    initializedHobbiesPage: false,
-    addingInProgress: [],
-    isLoading: false
+    initializedPage: false,
+    id: 1,
+    photos: ['https://czech-rurepublic-gb.ru/wp-content/uploads/2015/12/143635088818.jpg', 'https://w-dog.ru/wallpapers/0/0/437992000662990/kamera-fotoapparat-contax-devushka-fotograf.jpg', photo],
+    label: 'Вид хобби',
+    metro: 'станция метро',
+    timeTable: 'расписание',
+    equipment: '',
+    address: 'Город улица дом всё такое',
+    comfortable: '',
+    specialConditions: '',
+    description: 'Какое-то описание',
+    price: 'цена',
+    flag: {
+        isParking: false,
+        isBeginner: false,
+        isRent: false,
+    },
+    contact: {
+        mobile: '',
+        website: '',
+    },
+    category: '',
+    /*комменарии и ответы изначально пустые, это для примера*/
+    comments: [{
+        idComment: 1,
+        userId: 1,
+        text: 'Текст отзыва. Много много текста мМного много текстаМного много текстаМного много текстаМного много текстаМного много текстаМного много текстаМного много текстаМного много текстаМного много текста',
+        nameWriter: 'Азалия',
+        date: '28.12.2020',
+        stars: 2,
+        answer: {
+            providerId: 1,
+            text: 'Спасибо за ваш отзыв! ',
+            nameWriter: 'Имя парнера',
+            date: '15.04.2020',
+        }
+    },
+        {
+            idComment: 2,
+            userId: 2,
+            text:'Текст отзыва. Много много текста мМного много текстаМного много текстаМного много текстаМного много текстаМного много текстаМного много текстаМного много текстаМного много текстаМного много текста',
+            nameWriter: 'Имя',
+            date: '28.12.2020',
+            stars: 3,
+            answer: null,
+        },
+        {
+            idComment: 3,
+            userId: 2,
+            text:'Текст отзыва. Много много текста мМного много текстаМного много текстаМного много текстаМного много текстаМного много текстаМного много текстаМного много текстаМного много текстаМного много текста',
+            nameWriter: 'Имя',
+            date: '28.12.2020',
+            stars: 5,
+            answer: { providerId: 2,
+                text: 'Спасибо за ваш отзыв! бла бла бла',
+                nameWriter: 'Имя парнера2',
+                date: '16.04.2020'
+            }
+        }],
 };
-
-const hobbiesPageReducer = (state = initialState, action) => {
+const hobbyPageReducer = (state = initialState, action) => {
     switch (action.type) {
-    case INITIALIZE_HOBBIES:
-        return {
-            ...state, initializedHobbiesPage: action.initialize
-        };
-    case SET_HOBBY_CARDS:
-        return {...state, hobbyCards: action.hobbyCards};
-    case TOGGLE_IS_LOADING: {
-        return {...state, isLoading: action.isLoading}
-    }
-    case TOGGLE_IS_ADDING_PROGRESS:
+    case actionTypes.INITIALIZE_HOBBY_PAGE:
         return {
             ...state,
-            addingInProgress: action.isLoading ?
-                [...state.addingInProgress, action.hobbyId]
-                : state.addingInProgress.filter(id => id !== action.hobbyId)
+            initializedPage: action.initialized,
+        };
+    case actionTypes.ADD_RESPONSE:
+        return {
+            ...state,
+          comments: [
+                ...state.comments, action.comment
+            ]
+        };
+
+    case actionTypes.SET_HOBBY_DATA:
+        return {
+            ...state,
+            label: action.payload.label,
+            metro: action.payload.metro,
+            timeTable: action.payload.timeTable,
+            equipment: action.payload.equipment,
+            address: action.payload.address,
+            comfortable: action.payload.comfortable,
+            specialConditions: action.payload.specialConditions,
+            description: action.payload.description,
+            price: action.payload.price,
+            flag: action.payload.flag,
+            contact: action.payload.contact,
+            category: action.payload.category,
         };
     default:
         return state;
     }
 };
 
-const setHobbyCards = (hobbyCards) => ({type: SET_HOBBY_CARDS, hobbyCards});
-const initializedHobbiesPageSuccess = (initialize) => ({type: INITIALIZE_HOBBIES, initialize});
-export const toggleAddingProgress = (isLoading, hobbyId) => ({type: TOGGLE_IS_ADDING_PROGRESS,
-    isLoading, hobbyId});
-export default hobbiesPageReducer;
 
-export const findHobbies = (label, metroId) => (dispatch) => {
-    return hobbyApi.find(label, metroId)
-        .then((response) => {
-            if (response.ok) {
-                response.json().then(body => {
-                    dispatch(setHobbyCards(body));
-                });
-            } else {
-                response.json().then(console.log);
-            }
-        })
-};
+export default hobbyPageReducer;
 
-export const initializeHobbiesPage = (type, metro) => (dispatch) => {
-    dispatch(initializedHobbiesPageSuccess(false));
-    dispatch(setIsUserInCabinet(false));
-    let promise;
-    if(metro) {
-        promise = dispatch(findHobbies(type, metro));
-    }
-    else {
-        promise = dispatch(findHobbies(type));
-    }
-    Promise.all([promise])
-        .then(() => {
-            dispatch(initializedHobbiesPageSuccess(true));
-        });
-};
+

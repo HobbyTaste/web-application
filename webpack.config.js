@@ -58,6 +58,6 @@ module.exports = {
     plugins: [
         new CopyPlugin([{
             from: 'public/images/favicon.ico',
-        }])
-    ]
+        }]),
+    ],
 };

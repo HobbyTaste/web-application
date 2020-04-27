@@ -1,6 +1,6 @@
 import {getMetroStations} from "../../api/Geo";
 import Hobby from "../../api/Hobby";
-import {setIsUserInCabinet} from "./auth-reducer";
+import {setIsUserInCabinet} from "../actions/userActions";
 
 const SET_HOBBIES_TO_SELECT = 'SET_HOBBIES_TO_SELECT';
 const SET_METRO_STATIONS = 'SET-METRO-STATIONS';
