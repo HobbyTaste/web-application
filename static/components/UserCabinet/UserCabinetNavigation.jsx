@@ -8,8 +8,8 @@ const UserCabinetNavigation = (props) => {
         <nav className={style.navigation}>
             <Button/>
             <ul className={style.menu}>
-                <Link className={`${style.menuPoint} ${props.isMainPage ? style.activeCategory : style.passiveCategory}`} to="/user/cabinet">ПРОФИЛЬ</Link>
-                <Link className={`${style.menuPoint} ${props.isMainPage ? style.passiveCategory : style.activeCategory}`} to="/user/hobbies">ИЗБРАННОЕ</Link>
+                <a className={style.menuPoint} href="/user/cabinet">ПРОФИЛЬ</a>
+                <a className={style.menuPoint} href="/user/cabinet/hobbies">ИЗБРАННОЕ</a>
             </ul>
         </nav>
 

@@ -18,8 +18,8 @@ const Header = (props) => {
             <div className={style.searchContainer}>
                 <FilteredList/>
             </div>
-          { !props.isAuth
-                ? <div className={style.buttonContainer}><LogoutUser logout={props.logout} name= "Азалия"/></div>
+          { props.isAuth
+                ? <div className={style.buttonContainer}><LogoutUser logout={props.logout} name= {props.name} /></div>
                 : <div className={style.buttonContainer}><LoginUser/></div> }
 
         </header>);

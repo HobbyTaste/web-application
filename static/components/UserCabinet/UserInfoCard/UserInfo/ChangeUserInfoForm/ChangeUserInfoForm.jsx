@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { Input } from '../../../../Common/FormsControls/FormsControls';
 import style from './ChangeUserInfoForm.module.css';
+import { RedButton } from '../../../../Common/MaterialsButtons';
 import UploadPhoto from '../../../../Common/UploadFotoBlock/UploadPhoto';
 import { userEdit } from '../../../../../redux/reducers/auth-reducer';
 
@@ -9,10 +11,6 @@ let mainFile = null;
 const ChangeUserInfoForm = ({ handleSubmit, name, metro, error }) => {
     const [url, setUrl] = useState('');
     const [file, setFile] = useState(null);
-    const [state, setState] = useState({
-        Name: name,
-        Metro: metro,
-    });
     const uploadImage = (e) => {
         const reader = new FileReader();
         const photoFile = e.target.files[0];
@@ -28,22 +26,28 @@ const ChangeUserInfoForm = ({ handleSubmit, name, metro, error }) => {
         setFile(null);
         mainFile = null;
     };
-    const handleInputChange = (event) => {
-        setState({
-            [event.target.name]: event.target.text,
-        });
-    };
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className={style.inputContainer}>
-                <input className={style.input} name='Name' value={state.Name} onChange={handleInputChange}/>
-                <br/><input className={style.input} name='Metro' value={state.Metro} onChange={handleInputChange}/>
+            <div>
+                <Field component={Input} name={'name'} placeholder={name} autoFocus={true} type={'text'} fieldName={'Новое имя'}/>
             </div>
+            {/*<div>*/}
+            {/*    <Field component={Input} name={'email'} placeholder={'Новый email'} type={'email'} fieldName={'Новый email'}/>*/}
+            {/*</div>*/}
+            <div>
+                <Field component={Input} name={'metro'} placeholder={metro} type={'metro'} fieldName={'Новая станция метро'}/>
+            </div>
+            {/* <div><Field component={Input} name={"oldPassword"} placeholder={"Старый пароль"} type={"password"} fieldName={"Старый пароль"}/></div> */}
+            {/*<div>*/}
+            {/*    <Field component={Input} name={'password'} placeholder={'Новый пароль'} type={'password'} fieldName={'Новый пароль'}/>*/}
+            {/*</div>*/}
             <div>
                 <UploadPhoto uploadImage={uploadImage} deleteUrl={deleteUrl} url={url}/>
             </div>
-            <button className={style.saveButton} onClick={handleSubmit}>Сохранить</button>
+            <div className={style.saveButton}>
+                <RedButton text={'Сохранить'} label="Submit" onSubmit={handleSubmit} />
+            </div>
         </form>
     );
 };
@@ -56,14 +60,16 @@ const ChangeForm = (props) => {
         if (formData.name !== undefined) {
             dataToChange.name = formData.name;
         }
-        if (formData.metro !== undefined) {
-            dataToChange.metro = formData.metro;
+        if (formData.password !== undefined) {
+            dataToChange.password = formData.password;
+        }
+        if (formData.email !== undefined) {
+            dataToChange.email = formData.email;
         }
         if (mainFile !== null) {
             dataToChange.avatar = mainFile;
         }
         props.userEdit(dataToChange);
-        props.handleClick();
     };
     return (
         <div>

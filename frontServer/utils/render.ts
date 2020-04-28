@@ -14,6 +14,8 @@ function getHeader(): string {
             <link href="${staticURL}/favicon.ico" rel="icon">
             <title>${TITLE}</title>
             <script src="${staticURL}/main.js"></script>
+            <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+            <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
         </head>
         `
   );

@@ -19,8 +19,8 @@
     color: #034488;
 }
 
-.editButton {
-    width: auto;
+.buttonChange {
+    width: 176px;
     height: 36px;
     margin-top: 14px;
 
@@ -49,10 +49,4 @@
     width: 50%;
     margin-left: 10px;
     margin-bottom: 20px;
-}
-
-.editContainer {
-    display: block;
-    margin-left: 20px;
-    margin-top: 10px;
 }

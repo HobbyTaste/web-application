@@ -53,7 +53,7 @@ export default class BaseFetchClass {
     private async baseFetch(relativePath: string, customOpts?: Partial<IRequestOpts>): Promise<Response> {
         const {retryOnUnauthorized, ...fetchOpts} = BaseFetchClass.computeOpts(customOpts);
         const response: Response = await window.fetch(
-            path.join(this.baseUrl, relativePath),
+            this.baseUrl + relativePath,
             fetchOpts
         );
 

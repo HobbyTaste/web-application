@@ -26,7 +26,7 @@ export default function ButtonsSend(props) {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Button className={classes.buttonSend}><p className={style.text}>Отправить</p> </Button>
+            <Button type={props.type} className={classes.buttonSend}><p className={style.text}>Отправить</p> </Button>
         </div>
     );
 }

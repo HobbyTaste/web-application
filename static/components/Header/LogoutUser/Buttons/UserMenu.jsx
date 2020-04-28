@@ -104,8 +104,8 @@ export default function UserMenu(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose} className={classes.menuItem}> <Link to='/user/cabinet' className={classes.content} >Кабинет</Link></MenuItem>
-                <MenuItem onClick={handleClose} className={classes.menuItem}>  <Link to='/user/hobbies' className={classes.content} >Избранное</Link></MenuItem>
+                <MenuItem onClick={handleClose} className={classes.menuItem}> <Link to='/search/sport' className={classes.content} >Кабинет</Link></MenuItem>
+                <MenuItem onClick={handleClose} className={classes.menuItem}>  <Link to='/' className={classes.content} >Мои хобби</Link></MenuItem>
                 <MenuItem onClick={handleClose} className={classes.menuItemExit}>  <Button onClick={props.logout} className={classes.buttonExit +' '+ classes.content}>Выход</Button></MenuItem>
             </StyledMenu>
         </div>

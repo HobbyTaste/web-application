@@ -9,7 +9,7 @@ body{margin:0;background:#FFFFFF}
 .l_square:nth-child(2){margin-left:44px}
 .l_square:nth-child(3){margin-left:88px}
 .l_square:nth-child(4){margin-left:132px}
-.l_square span{position:absolute;top:0;left:20px;height:36px;width:36px;border-radius:2px;background-color:#178FD6}
+.l_square span{position:absolute;top:0;left:20px;height:36px;width:36px;border-radius:2px;background-color:#19B95D}
 .l_square span:nth-child(1){top:0}
 .l_square span:nth-child(2){top:44px}
 .l_square span:nth-child(3){top:88px}

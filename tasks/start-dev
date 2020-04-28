@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "Starting nginx balancer..."
+function stop_nginx() {
+    nginx -c nginx/dev.nginx.conf -p $PWD -s stop;
+}
+[[ ! -f .balancer ]] && mkdir .balancer
+nginx -c nginx/dev.nginx.conf -p $PWD;
+echo "nginx balancer started on port 8800"
+
+# Set exit handler
+function exit_handler() {
+    stop_nginx 2>/dev/null;
+}
+trap exit_handler EXIT
+
+echo "Running server..."
+NODE_ENV=development ts-node-dev --project frontServer/tsconfig.json --clear --respawn --transpileOnly frontServer/app.ts

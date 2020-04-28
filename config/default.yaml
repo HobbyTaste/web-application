@@ -1,12 +1,3 @@
 static:
   baseUrl: https://storage.yandexcloud.net/hobby-taste/static
-port: 8100
 port_front: 8080
-dbHost: mongodb+srv://{dbUser}:{dbPassword}@hobbytaste-a3rpe.mongodb.net/test?retryWrites=true&w=majority
-saltWorkFactor: 10
-aws:
-  region: ru-central1
-  endpoint: https://storage.yandexcloud.net
-  bucket: hobby-taste
-  # максимальный размер файла в Мб который можно загрузть в облака
-  maxFileSize: 1048576

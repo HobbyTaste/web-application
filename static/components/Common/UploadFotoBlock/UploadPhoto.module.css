@@ -3,12 +3,12 @@
 }
 
 .upload {
-    color: rgba(0, 0, 0, 0.6);
+    color: #19B95D;
     cursor: pointer;
     margin-right: 10px;
 }
 .upload:hover {
-    color: black;
+    color: #128040;
 }
 
 .image {
