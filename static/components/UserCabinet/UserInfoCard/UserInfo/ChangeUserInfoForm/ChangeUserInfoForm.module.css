@@ -10,18 +10,28 @@
     color: #128040;
 }
 
+.inputContainer {
+    display: block;
+}
+
 .input {
     height: 32px;
     width: 230px;
-    position: absolute;
-    margin: 10px;
+    position: relative;
+    margin: 10px 0;
     padding-left: 9px;
 
+    border: 1px solid #034488;
     border-radius: 3.5px;
     /*border-color: #034488;*/
 
     font-size: 16px;
     line-height: 24px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.input:focus {
+    color: black;
 }
 
 .label {
@@ -35,8 +45,22 @@
 }
 
 .saveButton {
-    height: 60px;
-    margin-top: 20px;
+    width: auto;
+    height: 36px;
+    margin-top: 14px;
+
+    background: #EDECE8;
+    border: 1px solid #2F1E0A;
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 500;
+
     display: flex;
-    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.16px;
+
+    color: #034488;
 }

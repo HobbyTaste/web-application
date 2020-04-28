@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import style from './UserCabinet.module.css';
 import UserInfoCard from './UserInfoCard/UserInfoCard';
 import { initializeUserCabinet } from '../../redux/reducers/auth-reducer';
-import UserHobbyCard from './UserHobbyCard/UserHobbyCard';
 import Feedback from '../HobbyCard/Feedback/Feedback';
 import UserCabinetHobbies from './UserCabinetHobbies';
 
@@ -13,18 +12,12 @@ const UserCabinet = (props) => {
         props.initializeUserCabinet();
     }, []);
 
-    const [mainPage, setMainPage] = useState(true);
-
     // if (!props.isAuth) {
     //    return <Redirect to={'/'} />;
     // }
 
-    function chaneScreen(e) {
-        setMainPage(!mainPage);
-    }
-
-    return (mainPage
-        ? <div className={style.background}>
+    return (
+        <div className={style.background}>
             <div className={style.infoContainer}>
                 <UserInfoCard avatar={props.avatar} name={props.name} metro={props.metro}/>
             </div>
@@ -32,14 +25,7 @@ const UserCabinet = (props) => {
             <div className={style.feedbackContainer}>
                 <Feedback isUserAuth={false} isProviderAuth={props.isProviderAuth} />
             </div>
-            <button onClick={chaneScreen} placeholder='Техническая кнопка'/>
-        </div>
-        : <div className={style.background}>
-            <div className={style.hobbyHeader}>Ваши хобби:</div>
-            <UserCabinetHobbies/>
-            <button onClick={chaneScreen} placeholder='Техническая кнопка'/>
-        </div>
-    );
+        </div>);
 };
 
 const mapStateToProps = (state) => ({

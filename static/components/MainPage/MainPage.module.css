@@ -1,11 +1,12 @@
 .background {
     min-height: 100%;
-    width: 100%;
+    width: 90%;
     height: auto;
     position: center;
     display: flex;
     top: 0;
     left: 0;
+    padding: 20px;
     z-index: 1;
     background: white;
 
@@ -16,7 +17,6 @@
 .header {
     position: center;
     height: 80px;
-    margin-left: 16px;
     font-size: 30px;
 
     display: flex;
@@ -26,8 +26,6 @@
 .cardContainer {
     position: center;
     display: flex;
-    margin-top: 26px;
-    margin-left: 16px;
     width: 955px;
     height: 325px;
 }
@@ -41,7 +39,6 @@
 .slotContainer {
     display: flex;
     width: 95%;
-    margin-left: 16px;
     position: center;
     background: white;
 
