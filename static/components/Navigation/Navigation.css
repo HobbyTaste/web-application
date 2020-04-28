@@ -14,18 +14,32 @@
     margin-bottom: 13px;
     list-style-type: none;
     padding-left: 0;
+}
 
+.menu > li {
+    height: 40px;
+    width: 16.6%;
+    margin-top: -12px;
 
+    line-height: 40px;
+    text-align: center;
+}
+
+.menu > li:hover {
+    background: #178FD6;
 }
 
 .menu > li > a{
-    color: #034488;;
+    color: #034488;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
     text-decoration: none;
 
     display: block;
-    padding: 0 35px;
     margin: auto;
+}
+
+.menu > li > a:hover{
+    color: white;
 }
